@@ -1,0 +1,1110 @@
+{
+  "status": "success",
+  "teams": {
+    "team0": {
+      "name": "Chelsea U18",
+      "defensiveLineHeightMeters": 51.2,
+      "compactnessMetersSq": 1412.6,
+      "zone14Entries": 538,
+      "leftHalfSpaceEntries": 153,
+      "rightHalfSpaceEntries": 116,
+      "heatmapImage": "heatmap_team0.png",
+      "passingNetworkImage": "passing_network_team0.png",
+      "zone14Image": "zone14_entries_team0.png",
+      "topChannel": "#205 (CB) \u2794 #142 (CM)",
+      "topChannelPasses": 38,
+      "playmakingHub": "#142 (Central Midfielder)",
+      "xgTotal": 3.79,
+      "goalsScored": 2,
+      "topXaCreator": "#142 (CM)",
+      "topXaValue": 0.76,
+      "ppda": {
+        "score": 6.5,
+        "zone": "Aggressive High Press (Gegenpressing)",
+        "passesAllowed": 83,
+        "defensiveActions": 119,
+        "trend": [
+          5.3,
+          6.9,
+          5.7,
+          7.6,
+          6.0,
+          7.1
+        ]
+      }
+    },
+    "team1": {
+      "name": "Arsenal U18",
+      "defensiveLineHeightMeters": 52.5,
+      "compactnessMetersSq": 1322.6,
+      "zone14Entries": 386,
+      "leftHalfSpaceEntries": 65,
+      "rightHalfSpaceEntries": 80,
+      "heatmapImage": "heatmap_team1.png",
+      "passingNetworkImage": "passing_network_team1.png",
+      "zone14Image": "zone14_entries_team1.png",
+      "topChannel": "#7 (RW) \u2794 #10 (AM)",
+      "topChannelPasses": 42,
+      "playmakingHub": "#10 (Attacking Midfielder)",
+      "xgTotal": 2.66,
+      "goalsScored": 1,
+      "topXaCreator": "#10 (AM)",
+      "topXaValue": 0.58,
+      "ppda": {
+        "score": 6.5,
+        "zone": "Aggressive High Press (Gegenpressing)",
+        "passesAllowed": 83,
+        "defensiveActions": 73,
+        "trend": [
+          7.3,
+          5.9,
+          7.7,
+          5.6,
+          7.2,
+          6.1
+        ]
+      }
+    }
+  },
+  "ball": {
+    "heatmapImage": "heatmap_ball.png"
+  },
+  "defensiveLineChartImage": "defensive_line_chart.png",
+  "defensiveLineTimeSeries": [
+    {
+      "minute": 1,
+      "team0Height": 56.4,
+      "team1Height": 53.6
+    },
+    {
+      "minute": 2,
+      "team0Height": 45.3,
+      "team1Height": 50.5
+    },
+    {
+      "minute": 3,
+      "team0Height": 50.0,
+      "team1Height": 49.8
+    },
+    {
+      "minute": 4,
+      "team0Height": 51.0,
+      "team1Height": 46.4
+    },
+    {
+      "minute": 5,
+      "team0Height": 53.9,
+      "team1Height": 63.5
+    },
+    {
+      "minute": 6,
+      "team0Height": 58.1,
+      "team1Height": 40.2
+    },
+    {
+      "minute": 7,
+      "team0Height": 42.4,
+      "team1Height": 44.5
+    },
+    {
+      "minute": 8,
+      "team0Height": 51.4,
+      "team1Height": 48.3
+    },
+    {
+      "minute": 9,
+      "team0Height": 45.6,
+      "team1Height": 51.4
+    },
+    {
+      "minute": 10,
+      "team0Height": 46.2,
+      "team1Height": 59.6
+    },
+    {
+      "minute": 11,
+      "team0Height": 48.3,
+      "team1Height": 60.8
+    },
+    {
+      "minute": 12,
+      "team0Height": 47.1,
+      "team1Height": 60.3
+    },
+    {
+      "minute": 13,
+      "team0Height": 44.5,
+      "team1Height": 52.7
+    },
+    {
+      "minute": 14,
+      "team0Height": 61.1,
+      "team1Height": 55.7
+    },
+    {
+      "minute": 15,
+      "team0Height": 46.1,
+      "team1Height": 48.2
+    },
+    {
+      "minute": 16,
+      "team0Height": 42.7,
+      "team1Height": 42.0
+    },
+    {
+      "minute": 17,
+      "team0Height": 52.5,
+      "team1Height": 52.2
+    },
+    {
+      "minute": 18,
+      "team0Height": 48.0,
+      "team1Height": 66.9
+    },
+    {
+      "minute": 19,
+      "team0Height": 44.9,
+      "team1Height": 56.5
+    },
+    {
+      "minute": 20,
+      "team0Height": 54.9,
+      "team1Height": 68.0
+    },
+    {
+      "minute": 21,
+      "team0Height": 55.2,
+      "team1Height": 59.3
+    },
+    {
+      "minute": 22,
+      "team0Height": 52.0,
+      "team1Height": 50.4
+    },
+    {
+      "minute": 23,
+      "team0Height": 39.8,
+      "team1Height": 57.9
+    },
+    {
+      "minute": 24,
+      "team0Height": 44.5,
+      "team1Height": 61.1
+    },
+    {
+      "minute": 25,
+      "team0Height": 49.5,
+      "team1Height": 53.8
+    },
+    {
+      "minute": 26,
+      "team0Height": 50.8,
+      "team1Height": 50.2
+    },
+    {
+      "minute": 27,
+      "team0Height": 47.3,
+      "team1Height": 42.1
+    },
+    {
+      "minute": 28,
+      "team0Height": 47.0,
+      "team1Height": 60.7
+    },
+    {
+      "minute": 29,
+      "team0Height": 50.9,
+      "team1Height": 46.3
+    },
+    {
+      "minute": 30,
+      "team0Height": 41.0,
+      "team1Height": 57.8
+    },
+    {
+      "minute": 31,
+      "team0Height": 42.1,
+      "team1Height": 60.6
+    },
+    {
+      "minute": 32,
+      "team0Height": 49.9,
+      "team1Height": 55.1
+    },
+    {
+      "minute": 33,
+      "team0Height": 45.2,
+      "team1Height": 43.5
+    },
+    {
+      "minute": 34,
+      "team0Height": 43.5,
+      "team1Height": 45.6
+    },
+    {
+      "minute": 35,
+      "team0Height": 53.3,
+      "team1Height": 54.5
+    },
+    {
+      "minute": 36,
+      "team0Height": 48.2,
+      "team1Height": 54.1
+    },
+    {
+      "minute": 37,
+      "team0Height": 61.6,
+      "team1Height": 64.2
+    },
+    {
+      "minute": 38,
+      "team0Height": 59.1,
+      "team1Height": 60.5
+    },
+    {
+      "minute": 39,
+      "team0Height": 41.8,
+      "team1Height": 56.0
+    },
+    {
+      "minute": 40,
+      "team0Height": 50.0,
+      "team1Height": 60.0
+    },
+    {
+      "minute": 41,
+      "team0Height": 53.4,
+      "team1Height": 68.0
+    },
+    {
+      "minute": 42,
+      "team0Height": 55.1,
+      "team1Height": 57.1
+    },
+    {
+      "minute": 43,
+      "team0Height": 37.2,
+      "team1Height": 53.9
+    },
+    {
+      "minute": 44,
+      "team0Height": 46.2,
+      "team1Height": 59.1
+    },
+    {
+      "minute": 45,
+      "team0Height": 50.6,
+      "team1Height": 60.2
+    },
+    {
+      "minute": 46,
+      "team0Height": 50.8,
+      "team1Height": 42.2
+    },
+    {
+      "minute": 47,
+      "team0Height": 43.9,
+      "team1Height": 58.9
+    },
+    {
+      "minute": 48,
+      "team0Height": 51.2,
+      "team1Height": 54.4
+    },
+    {
+      "minute": 49,
+      "team0Height": 59.5,
+      "team1Height": 40.9
+    },
+    {
+      "minute": 50,
+      "team0Height": 47.8,
+      "team1Height": 42.3
+    },
+    {
+      "minute": 51,
+      "team0Height": 53.3,
+      "team1Height": 62.2
+    },
+    {
+      "minute": 52,
+      "team0Height": 65.0,
+      "team1Height": 68.0
+    },
+    {
+      "minute": 53,
+      "team0Height": 65.0,
+      "team1Height": 57.9
+    },
+    {
+      "minute": 54,
+      "team0Height": 61.5,
+      "team1Height": 40.7
+    },
+    {
+      "minute": 55,
+      "team0Height": 50.9,
+      "team1Height": 54.0
+    },
+    {
+      "minute": 56,
+      "team0Height": 51.7,
+      "team1Height": 50.3
+    },
+    {
+      "minute": 57,
+      "team0Height": 45.2,
+      "team1Height": 44.4
+    },
+    {
+      "minute": 58,
+      "team0Height": 55.0,
+      "team1Height": 49.6
+    },
+    {
+      "minute": 59,
+      "team0Height": 64.4,
+      "team1Height": 62.2
+    },
+    {
+      "minute": 60,
+      "team0Height": 54.0,
+      "team1Height": 51.1
+    },
+    {
+      "minute": 61,
+      "team0Height": 61.0,
+      "team1Height": 62.1
+    },
+    {
+      "minute": 62,
+      "team0Height": 58.3,
+      "team1Height": 48.0
+    },
+    {
+      "minute": 63,
+      "team0Height": 58.6,
+      "team1Height": 43.1
+    },
+    {
+      "minute": 64,
+      "team0Height": 46.6,
+      "team1Height": 43.7
+    },
+    {
+      "minute": 65,
+      "team0Height": 45.3,
+      "team1Height": 59.7
+    },
+    {
+      "minute": 66,
+      "team0Height": 54.2,
+      "team1Height": 37.5
+    },
+    {
+      "minute": 67,
+      "team0Height": 55.5,
+      "team1Height": 52.9
+    },
+    {
+      "minute": 68,
+      "team0Height": 60.4,
+      "team1Height": 52.8
+    },
+    {
+      "minute": 69,
+      "team0Height": 52.1,
+      "team1Height": 39.2
+    },
+    {
+      "minute": 70,
+      "team0Height": 53.3,
+      "team1Height": 59.4
+    },
+    {
+      "minute": 71,
+      "team0Height": 50.4,
+      "team1Height": 50.9
+    },
+    {
+      "minute": 72,
+      "team0Height": 53.8,
+      "team1Height": 52.8
+    },
+    {
+      "minute": 73,
+      "team0Height": 62.5,
+      "team1Height": 51.8
+    },
+    {
+      "minute": 74,
+      "team0Height": 50.9,
+      "team1Height": 62.7
+    },
+    {
+      "minute": 75,
+      "team0Height": 61.8,
+      "team1Height": 59.5
+    },
+    {
+      "minute": 76,
+      "team0Height": 52.1,
+      "team1Height": 48.5
+    },
+    {
+      "minute": 77,
+      "team0Height": 47.6,
+      "team1Height": 49.0
+    },
+    {
+      "minute": 78,
+      "team0Height": 58.5,
+      "team1Height": 52.4
+    },
+    {
+      "minute": 79,
+      "team0Height": 62.9,
+      "team1Height": 48.8
+    },
+    {
+      "minute": 80,
+      "team0Height": 51.7,
+      "team1Height": 42.0
+    },
+    {
+      "minute": 81,
+      "team0Height": 40.2,
+      "team1Height": 35.0
+    },
+    {
+      "minute": 82,
+      "team0Height": 47.0,
+      "team1Height": 37.7
+    },
+    {
+      "minute": 83,
+      "team0Height": 44.2,
+      "team1Height": 52.7
+    },
+    {
+      "minute": 84,
+      "team0Height": 54.1,
+      "team1Height": 55.2
+    },
+    {
+      "minute": 85,
+      "team0Height": 43.5,
+      "team1Height": 57.7
+    },
+    {
+      "minute": 86,
+      "team0Height": 53.3,
+      "team1Height": 52.2
+    },
+    {
+      "minute": 87,
+      "team0Height": 45.1,
+      "team1Height": 43.1
+    },
+    {
+      "minute": 88,
+      "team0Height": 47.6,
+      "team1Height": 37.4
+    },
+    {
+      "minute": 89,
+      "team0Height": 55.9,
+      "team1Height": 41.7
+    },
+    {
+      "minute": 90,
+      "team0Height": 53.0,
+      "team1Height": 53.3
+    }
+  ],
+  "ppdaChartImage": "ppda_gauge_chart.png",
+  "ppdaIntervals": [
+    "0-15m",
+    "15-30m",
+    "30-45m",
+    "45-60m",
+    "60-75m",
+    "75-90m"
+  ],
+  "zone14ChartImage": "zone14_entries_chart.png",
+  "xgChartImage": "xg_flow_chart.png",
+  "xgTimeSeries": [
+    {
+      "minute": 1,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 2,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 3,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 4,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 5,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 6,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 7,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 8,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 9,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 10,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 11,
+      "team0Xg": 0.0,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 12,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 13,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 14,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 15,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 16,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 17,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 18,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 19,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 20,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 21,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 22,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 23,
+      "team0Xg": 0.75,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 24,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 25,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 26,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 27,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 28,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 29,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 30,
+      "team0Xg": 1.64,
+      "team1Xg": 0.0
+    },
+    {
+      "minute": 31,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 32,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 33,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 34,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 35,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 36,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 37,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 38,
+      "team0Xg": 1.64,
+      "team1Xg": 0.45
+    },
+    {
+      "minute": 39,
+      "team0Xg": 1.64,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 40,
+      "team0Xg": 1.64,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 41,
+      "team0Xg": 1.64,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 42,
+      "team0Xg": 1.64,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 43,
+      "team0Xg": 1.64,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 44,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 45,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 46,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 47,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 48,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 49,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 50,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 51,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 52,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 53,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 54,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 55,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 56,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 57,
+      "team0Xg": 1.97,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 58,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 59,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 60,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 61,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 62,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 63,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 64,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 65,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 66,
+      "team0Xg": 2.87,
+      "team1Xg": 1.28
+    },
+    {
+      "minute": 67,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 68,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 69,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 70,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 71,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 72,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 73,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 74,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 75,
+      "team0Xg": 2.87,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 76,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 77,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 78,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 79,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 80,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 81,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 82,
+      "team0Xg": 3.36,
+      "team1Xg": 1.81
+    },
+    {
+      "minute": 83,
+      "team0Xg": 3.36,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 84,
+      "team0Xg": 3.36,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 85,
+      "team0Xg": 3.36,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 86,
+      "team0Xg": 3.36,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 87,
+      "team0Xg": 3.36,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 88,
+      "team0Xg": 3.79,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 89,
+      "team0Xg": 3.79,
+      "team1Xg": 2.66
+    },
+    {
+      "minute": 90,
+      "team0Xg": 3.79,
+      "team1Xg": 2.66
+    }
+  ],
+  "shots": [
+    {
+      "minute": 12,
+      "team": 0,
+      "player": "#9 (ST)",
+      "x": 92.5,
+      "y": 35.0,
+      "outcome": "saved",
+      "isHeader": false,
+      "assister": "#142 (CM)",
+      "xg": 0.75,
+      "xa": 0.75
+    },
+    {
+      "minute": 24,
+      "team": 0,
+      "player": "#9 (ST)",
+      "x": 96.0,
+      "y": 33.5,
+      "outcome": "goal",
+      "isHeader": false,
+      "assister": "#142 (CM)",
+      "xg": 0.89,
+      "xa": 0.89
+    },
+    {
+      "minute": 31,
+      "team": 1,
+      "player": "#10 (AM)",
+      "x": 88.0,
+      "y": 28.0,
+      "outcome": "blocked",
+      "isHeader": false,
+      "assister": "#7 (RW)",
+      "xg": 0.45,
+      "xa": 0.45
+    },
+    {
+      "minute": 39,
+      "team": 1,
+      "player": "#9 (ST)",
+      "x": 94.5,
+      "y": 36.0,
+      "outcome": "goal",
+      "isHeader": false,
+      "assister": "#10 (AM)",
+      "xg": 0.83,
+      "xa": 0.83
+    },
+    {
+      "minute": 44,
+      "team": 0,
+      "player": "#11 (LW)",
+      "x": 89.0,
+      "y": 22.0,
+      "outcome": "missed",
+      "isHeader": false,
+      "assister": "#8 (CM)",
+      "xg": 0.33,
+      "xa": 0.33
+    },
+    {
+      "minute": 58,
+      "team": 0,
+      "player": "#9 (ST)",
+      "x": 97.5,
+      "y": 34.0,
+      "outcome": "goal",
+      "isHeader": true,
+      "assister": "#3 (LB)",
+      "xg": 0.9,
+      "xa": 0.9
+    },
+    {
+      "minute": 67,
+      "team": 1,
+      "player": "#11 (LW)",
+      "x": 91.0,
+      "y": 42.0,
+      "outcome": "saved",
+      "isHeader": false,
+      "assister": "#10 (AM)",
+      "xg": 0.53,
+      "xa": 0.53
+    },
+    {
+      "minute": 76,
+      "team": 0,
+      "player": "#7 (RW)",
+      "x": 90.0,
+      "y": 26.0,
+      "outcome": "saved",
+      "isHeader": false,
+      "assister": "#142 (CM)",
+      "xg": 0.49,
+      "xa": 0.49
+    },
+    {
+      "minute": 83,
+      "team": 1,
+      "player": "#9 (ST)",
+      "x": 95.0,
+      "y": 32.0,
+      "outcome": "missed",
+      "isHeader": false,
+      "assister": "#7 (RW)",
+      "xg": 0.85,
+      "xa": 0.85
+    },
+    {
+      "minute": 88,
+      "team": 0,
+      "player": "#10 (AM)",
+      "x": 86.5,
+      "y": 34.5,
+      "outcome": "blocked",
+      "isHeader": false,
+      "assister": "#9 (ST)",
+      "xg": 0.43,
+      "xa": 0.43
+    }
+  ]
+}

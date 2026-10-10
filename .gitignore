@@ -1,0 +1,57 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node dependencies and build outputs
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Model weights and datasets
+*.pt
+*.pth
+*.onnx
+*.bin
+data/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Large CV pipeline outputs (preserve small summaries, ignore heavy frames & tracks)
+public/output/*/tracks.json
+public/output/*/tracks_with_teams.json
+public/output/*/tracked_players.json
+public/output/40e8da69*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.agent/
+.agents/

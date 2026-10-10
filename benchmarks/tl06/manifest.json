@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "benchmarkId": "tl06-offline-cv-benchmark-v1",
+  "status": "ready",
+  "clips": [
+    {
+      "clipId": "match-001-5min-0000",
+      "matchId": "chelsea-arsenal-u18",
+      "sourceVideo": "data/match_5min.mp4",
+      "sourceChecksum": "sha256:f1391fc4456788c48ae7e18569a87665517223dd3f514a93350edaf4e7f30a84",
+      "startFrame": 0,
+      "endFrame": 7376,
+      "fps": 25,
+      "rights": {
+        "status": "owner-approved",
+        "reference": "owner-approval-match5min-u18"
+      },
+      "split": "held-out",
+      "annotations": "annotations/match_5min_annotations.json",
+      "labels": ["normal-play"]
+    }
+  ],
+  "models": [
+    {
+      "modelId": "best-fine-tuned-v2",
+      "weights": "models/best.pt",
+      "weightsChecksum": "sha256:b4c8373945c0e5e696a6fa805415c5a16350c1bdd98074e4d34e9ada83727855",
+      "sourceRepository": "TactiVision-CV/models",
+      "trainingDataset": "Roboflow/TactivisonV2.yolov8",
+      "baseModel": "yolov8m",
+      "trainingCommand": "yolo detect train data=TactivisonV2.yolov8/data.yaml model=yolov8m.pt epochs=100",
+      "license": "research-internal"
+    },
+    {
+      "modelId": "yolov8m-baseline",
+      "weights": "models/yolov8m.pt",
+      "weightsChecksum": "sha256:5d4a90cdc7a21786cc59cd19778e9eafff836df9e2da32524737c7ee6efe4fe5",
+      "sourceRepository": "ultralytics/assets",
+      "trainingDataset": "COCO",
+      "baseModel": "yolov8m",
+      "trainingCommand": "pre-trained COCO weights",
+      "license": "AGPL-3.0"
+    },
+    {
+      "modelId": "yolo11m-baseline",
+      "weights": "models/yolo11m.pt",
+      "weightsChecksum": "sha256:d5ffc1a674953a08e11a8d21e022781b1b23a19b730afc309290bd9fb5305b95",
+      "sourceRepository": "ultralytics/assets",
+      "trainingDataset": "COCO",
+      "baseModel": "yolo11m",
+      "trainingCommand": "pre-trained COCO weights",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "environment": {
+    "recordedAt": "2026-10-09T10:00:00Z",
+    "operatingSystem": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "pytorch": "2.0.1+cpu",
+    "ultralytics": "8.4.115",
+    "opencv": "4.10.0",
+    "numpy": "1.26.4",
+    "scikitLearn": "1.3.0",
+    "hardware": "Intel Core x86_64 CPU"
+  },
+  "scoring": {
+    "detection": ["precision", "recall", "f1"],
+    "tracking": ["hota", "idf1", "id-switches", "fragmentations"],
+    "calibration": ["reprojection-error", "valid-frame-coverage"],
+    "runtime": ["wall-clock", "fps", "peak-memory"]
+  }
+}

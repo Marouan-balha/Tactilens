@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "benchmarkId": "tl06-initial-benchmark",
+  "status": "pending",
+  "clips": [
+    {
+      "clipId": "match-001-half-01-0000",
+      "matchId": "match-001",
+      "sourceVideo": "data/rights-cleared/match-001.mp4",
+      "sourceChecksum": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "startFrame": 0,
+      "endFrame": 7500,
+      "fps": 25,
+      "rights": {
+        "status": "pending",
+        "reference": "REPLACE_WITH_OWNER_APPROVAL_REFERENCE"
+      },
+      "split": "held-out",
+      "annotations": "annotations/match-001-half-01.json",
+      "labels": ["normal-play"]
+    }
+  ],
+  "models": [
+    {
+      "modelId": "baseline-model",
+      "weights": "models/baseline.pt",
+      "weightsChecksum": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "sourceRepository": "REPLACE_WITH_SOURCE_REPOSITORY",
+      "trainingDataset": "REPLACE_WITH_TRAINING_DATASET",
+      "baseModel": "REPLACE_WITH_BASE_MODEL",
+      "trainingCommand": "REPLACE_WITH_TRAINING_COMMAND",
+      "license": "REPLACE_WITH_MODEL_LICENSE"
+    }
+  ],
+  "environment": {
+    "recordedAt": "2026-10-03T00:00:00Z",
+    "operatingSystem": "REPLACE_WITH_OS",
+    "python": "REPLACE_WITH_PYTHON_VERSION",
+    "pytorch": "REPLACE_WITH_PYTORCH_VERSION",
+    "ultralytics": "REPLACE_WITH_ULTRALYTICS_VERSION",
+    "opencv": "REPLACE_WITH_OPENCV_VERSION",
+    "numpy": "REPLACE_WITH_NUMPY_VERSION",
+    "scikitLearn": "REPLACE_WITH_SCIKIT_LEARN_VERSION",
+    "hardware": "REPLACE_WITH_HARDWARE_PROFILE"
+  },
+  "scoring": {
+    "detection": ["precision", "recall", "f1"],
+    "tracking": ["hota", "idf1", "id-switches", "fragmentations"],
+    "calibration": ["reprojection-error", "valid-frame-coverage"],
+    "runtime": ["wall-clock", "fps", "peak-memory"]
+  }
+}

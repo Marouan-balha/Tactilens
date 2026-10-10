@@ -1,0 +1,92 @@
+{
+  "benchmarkId": "tl06-offline-cv-benchmark-v1",
+  "schemaVersion": 1,
+  "clipId": "match-001-5min-0000",
+  "modelId": "best-fine-tuned-v2",
+  "modelWeights": "models/best.pt",
+  "modelChecksum": "sha256:b4c8373945c0e5e696a6fa805415c5a16350c1bdd98074e4d34e9ada83727855",
+  "videoChecksum": "sha256:f1391fc4456788c48ae7e18569a87665517223dd3f514a93350edaf4e7f30a84",
+  "detection": {
+    "player": {
+      "totalObservations": 64853,
+      "meanConfidence": 0.8507,
+      "medianConfidence": 0.8709,
+      "minConfidence": 0.1506,
+      "maxConfidence": 0.9786
+    },
+    "ball": {
+      "totalObservations": 940,
+      "frameCoveragePercent": 12.74,
+      "meanConfidence": 0.6345,
+      "medianConfidence": 0.6481,
+      "minConfidence": 0.1773,
+      "maxConfidence": 0.8762,
+      "missingFrames": 6436
+    }
+  },
+  "tracking": {
+    "totalUniqueTracks": 71,
+    "meanTrackDurationFrames": 913.4,
+    "meanTrackDurationSeconds": 36.54,
+    "medianTrackDurationFrames": 602.0,
+    "maxTrackDurationFrames": 5512,
+    "maxTrackDurationSeconds": 220.48,
+    "minTrackDurationFrames": 27,
+    "longTracksOver500Frames": 39,
+    "shortTracksUnder50Frames": 7
+  },
+  "ballInterpolation": {
+    "rawDetections": 940,
+    "rawCoveragePercent": 12.74,
+    "interpolatedFramesAdded": 1130,
+    "totalFramesWithBall": 2070,
+    "postInterpolationCoveragePercent": 28.06,
+    "maxAllowedGapFrames": 50,
+    "maxAllowedSpeedPxPerFrame": 80.0,
+    "status": "PASSED"
+  },
+  "teamClassification": {
+    "distribution": {
+      "team_b": {
+        "count": 41839,
+        "percentage": 64.51
+      },
+      "referee": {
+        "count": 20496,
+        "percentage": 31.6
+      },
+      "team_a": {
+        "count": 2491,
+        "percentage": 3.84
+      },
+      "unknown": {
+        "count": 27,
+        "percentage": 0.04
+      }
+    },
+    "trackPurity": {
+      "totalTracks": 71,
+      "pureConsistentTracks": 71,
+      "trackPurityPercent": 100.0
+    }
+  },
+  "calibration": {
+    "status": "valid",
+    "reprojectionErrorMeters": 0.371,
+    "reprojectionErrorPixels": 2.18,
+    "landmarksUsed": 5,
+    "inliersCount": 5,
+    "reason": "Valid homography calibrated with 0.37m RMSE (2.2px)."
+  },
+  "runtime": {
+    "totalDurationSeconds": 4461.923,
+    "totalVideoFrames": 7376,
+    "throughputFps": 1.65,
+    "python": "3.11.9",
+    "operatingSystem": "Windows-10-10.0.26200-SP0",
+    "hardwareProfile": "Intel Core x86_64 CPU"
+  },
+  "gate1Status": "PASSED",
+  "gate4Status": "PASSED",
+  "gate5Status": "PASSED"
+}

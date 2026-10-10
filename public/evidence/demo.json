@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "videoAssets": [],
+  "clips": [],
+  "events": [],
+  "occurrences": [],
+  "findings": [],
+  "briefing": {
+    "schemaVersion": 1,
+    "id": "briefing-local-demo",
+    "opponentId": "club:demo",
+    "findingIds": [],
+    "generatedAt": "2026-10-06T00:00:00.000Z",
+    "freshness": "fresh",
+    "availability": "ready",
+    "sourceRevision": "local-demo-v1",
+    "synthetic": true
+  }
+}

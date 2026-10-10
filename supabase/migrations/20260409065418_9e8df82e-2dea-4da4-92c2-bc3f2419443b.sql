@@ -1,0 +1,2 @@
+ALTER TABLE public.rag_documents DROP CONSTRAINT IF EXISTS rag_documents_source_type_check;
+ALTER TABLE public.rag_documents ADD CONSTRAINT rag_documents_source_type_check CHECK (source_type IN ('pdf', 'youtube', 'article', 'twitter'));

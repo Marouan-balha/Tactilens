@@ -1,0 +1,2 @@
+REVOKE EXECUTE ON FUNCTION public.search_knowledge(text, integer, text, text) FROM anon, authenticated, public;
+GRANT EXECUTE ON FUNCTION public.search_knowledge(text, integer, text, text) TO service_role;
