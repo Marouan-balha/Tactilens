@@ -11,7 +11,7 @@ import { OppositionDashboard } from '@/components/dashboard/OppositionDashboard'
 import { ThinkingTrace } from '@/components/ThinkingTrace';
 import { Switch } from '@/components/ui/switch';
 import { useOppositionAnalyst } from '@/hooks/useOppositionAnalyst';
-import { Send, RotateCcw, Zap, Shield, Target, LayoutDashboard, MessageSquare, Database, BookOpen, Brain, Flame } from 'lucide-react';
+import { Send, RotateCcw, Zap, Shield, Target, LayoutDashboard, MessageSquare, Database, BookOpen, Brain, Flame, Play } from 'lucide-react';
 import teamsData from '@/data/teams.json';
 import { WorldCupSection } from '@/components/WorldCupSection';
 import { internationalTeams } from '@/lib/internationalTeams';
@@ -69,9 +69,9 @@ export default function Index() {
           </div>
           <div className="flex items-center gap-3">
             <Link to="/match-intelligence">
-              <Button variant="default" size="sm" className="gap-1.5 text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90">
-                <Flame className="h-3.5 w-3.5" />
-                Match Video Heatmaps
+              <Button variant="default" size="sm" className="gap-1.5 text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
+                <Play className="h-3.5 w-3.5 fill-current" />
+                Match Intelligence
               </Button>
             </Link>
             <Link to="/knowledge">

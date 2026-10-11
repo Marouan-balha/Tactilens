@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { AlertTriangle, CheckCircle2, FileVideo, Loader2, UploadCloud } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { AlertTriangle, CheckCircle2, FileVideo, Loader2, UploadCloud, Play } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -195,6 +196,14 @@ export function VideoEvidenceUpload() {
                   👥 teams_tracks.json
                 </a>
               </div>
+            </div>
+            <div className="pt-2 border-t border-border/40">
+              <Link to="/match-intelligence">
+                <Button variant="default" size="sm" className="w-full gap-1.5 text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
+                  <Play className="h-3.5 w-3.5 fill-current" />
+                  Open in Match Intelligence &rarr;
+                </Button>
+              </Link>
             </div>
           </div>
         )}
