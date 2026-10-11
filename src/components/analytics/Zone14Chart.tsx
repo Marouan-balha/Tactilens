@@ -83,7 +83,7 @@ export function Zone14Chart({
         {/* Tactical Breakdown Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 text-xs">
           {insights.map((item, idx) => {
-            const clipSeconds = idx === 0 ? 44.0 : 138.0;
+            const clipSeconds = idx === 0 ? 1100.0 : 2648.0;
             const clipLabel = idx === 0 ? 'Chelsea: Min 18 Left Half-Space Penetration' : 'Arsenal: Min 44 Right Half-Space Transition';
             return (
               <div

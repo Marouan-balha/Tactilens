@@ -109,9 +109,9 @@ export default function MatchIntelligence() {
     id: 2,
     title: 'Chelsea #9 (ST) — Goal (0.82 xG)',
     category: 'shot',
-    timestampSeconds: 44.0,
-    startSeconds: 44.0,
-    endSeconds: 56.0,
+    timestampSeconds: 1104.0,
+    startSeconds: 1104.0,
+    endSeconds: 1120.0,
     team: 'Chelsea U18',
     metadata: 'Minute 18’ • Near-post tap-in following left byline cutback',
     provenance: 'CV Tracking Verified (BoT-SORT & Homography Calibrated)'
@@ -126,10 +126,40 @@ export default function MatchIntelligence() {
 
   const handleSeekClip = (clip: ActiveEvidenceClip) => {
     setActiveClip(clip);
-    if (videoRef.current) {
-      videoRef.current.currentTime = clip.startSeconds;
-      videoRef.current.playbackRate = playbackRate;
-      videoRef.current.play().catch(() => {});
+    const vid = videoRef.current;
+    if (!vid) return;
+
+    let targetSeconds = clip.startSeconds;
+    const dur = vid.duration;
+
+    // Adapt if video loaded is a 5-minute condensed clip vs 95-minute full match
+    if (dur && !isNaN(dur) && dur < 600 && targetSeconds > dur) {
+      targetSeconds = (targetSeconds / 5400) * dur;
+    } else if (dur && !isNaN(dur)) {
+      targetSeconds = Math.min(Math.max(0, targetSeconds), Math.max(0, dur - 1));
+    }
+
+    const performSeek = () => {
+      try {
+        vid.currentTime = targetSeconds;
+        vid.playbackRate = playbackRate;
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((e) => console.warn('Autoplay notice:', e));
+        }
+      } catch (err) {
+        console.warn('Seek error:', err);
+      }
+    };
+
+    if (vid.readyState >= 1) {
+      performSeek();
+    } else {
+      const onLoaded = () => {
+        performSeek();
+        vid.removeEventListener('loadedmetadata', onLoaded);
+      };
+      vid.addEventListener('loadedmetadata', onLoaded);
     }
   };
 

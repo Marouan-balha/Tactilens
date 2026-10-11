@@ -59,7 +59,7 @@ export function DefensiveLineChart({
               {onSelectClip && (
                 <button
                   type="button"
-                  onClick={() => onSelectClip(15.0, 'Chelsea: High Press Transition (Minute 7)')}
+                  onClick={() => onSelectClip(435.0, 'Chelsea: High Press Transition (Minute 7)')}
                   className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
                   title="Play Clip"
                 >
@@ -80,7 +80,7 @@ export function DefensiveLineChart({
               {onSelectClip && (
                 <button
                   type="button"
-                  onClick={() => onSelectClip(78.0, 'Chelsea: Low Block Defending (Minute 29)')}
+                  onClick={() => onSelectClip(1740.0, 'Chelsea: Low Block Defending (Minute 29)')}
                   className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
                   title="Play Clip"
                 >
@@ -101,7 +101,7 @@ export function DefensiveLineChart({
               {onSelectClip && (
                 <button
                   type="button"
-                  onClick={() => onSelectClip(138.0, 'Arsenal: High Counter Press (Minute 44)')}
+                  onClick={() => onSelectClip(2640.0, 'Arsenal: High Counter Press (Minute 44)')}
                   className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
                   title="Play Clip"
                 >
@@ -122,7 +122,7 @@ export function DefensiveLineChart({
               {onSelectClip && (
                 <button
                   type="button"
-                  onClick={() => onSelectClip(225.0, 'Arsenal: Box Compression Breach (Minute 71)')}
+                  onClick={() => onSelectClip(4280.0, 'Arsenal: Box Compression Breach (Minute 71)')}
                   className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
                   title="Play Clip"
                 >
