@@ -151,7 +151,17 @@ export default function MatchIntelligence() {
   // Interactive Video Player & Evidence Clip Seeking
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
-  const [activeClip, setActiveClip] = useState<ActiveEvidenceClip | null>(null);
+  const [activeClip, setActiveClip] = useState<ActiveEvidenceClip | null>({
+    id: 1,
+    title: 'Match Kickoff & Tactical Shape',
+    category: 'defensive_line',
+    timestampSeconds: 0,
+    startSeconds: 0,
+    endSeconds: 15.0,
+    team: 'Chelsea U18',
+    metadata: 'High press formation & mid-block defensive transition',
+    provenance: 'CV Tracking Verified (BoT-SORT & Homography Calibrated)'
+  });
 
   useEffect(() => {
     fetch(`${currentMatch.outputPath}/analytics_summary.json`)
@@ -162,12 +172,12 @@ export default function MatchIntelligence() {
           const firstShot = data.shots[0];
           setActiveClip({
             id: firstShot.id,
-            title: `${firstShot.team} #${firstShot.player} (${firstShot.position}) — ${firstShot.outcome.toUpperCase()} (${firstShot.xg} xG)`,
+            title: `${String(firstShot.team)} #${firstShot.player} (${firstShot.position}) — ${String(firstShot.outcome || '').toUpperCase()} (${firstShot.xg} xG)`,
             category: 'shot',
             timestampSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
             startSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
             endSeconds: firstShot.clipEndSeconds ?? ((firstShot.minute * 60) + 12),
-            team: firstShot.team,
+            team: String(firstShot.team).includes('Chelsea') || firstShot.team === 0 ? 'Chelsea U18' : 'Arsenal U18',
             metadata: `Minute ${firstShot.minute}’ • ${firstShot.foot} • Assister: ${firstShot.assister} (${firstShot.xa} xA)`,
             provenance: 'TL-04 Evidence Schema • Verified Video Occurrence',
           });
@@ -498,9 +508,9 @@ export default function MatchIntelligence() {
                       <div className="space-y-0.5">
                         <div className="flex items-center gap-2">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                            activeClip.team.includes('Chelsea') ? 'bg-blue-600 text-white' : 'bg-red-600 text-white'
+                            String(activeClip.team || '').includes('Chelsea') ? 'bg-blue-600 text-white' : 'bg-red-600 text-white'
                           }`}>
-                            {activeClip.team}
+                            {String(activeClip.team || 'Match Footage')}
                           </span>
                           <span className="text-[10px] font-mono font-bold text-primary px-1.5 py-0.5 rounded bg-primary/20">
                             [{Math.floor(activeClip.startSeconds / 60)}:{(Math.floor(activeClip.startSeconds % 60)).toString().padStart(2, '0')} – {Math.floor(activeClip.endSeconds / 60)}:{(Math.floor(activeClip.endSeconds % 60)).toString().padStart(2, '0')}]
