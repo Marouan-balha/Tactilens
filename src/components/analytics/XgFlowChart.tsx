@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Target, TrendingUp, Sparkles, Award, ShieldAlert, BarChart3, ListFilter } from 'lucide-react';
-import { computeXgStats, type ShotEvent, type XgSummaryData } from '@/lib/xgUtils';
+import { Target, TrendingUp, Sparkles, Award, ShieldAlert, BarChart3, ListFilter, Play, Film } from 'lucide-react';
+import { computeXgStats, DEFAULT_MATCH_SHOTS, type ShotEvent, type XgSummaryData } from '@/lib/xgUtils';
 
 interface XgFlowChartProps {
   summaryData?: XgSummaryData;
   shotsData?: ShotEvent[];
   chartImage?: string;
+  onSelectShot?: (shot: ShotEvent) => void;
+  activeShotId?: number;
 }
 
 export function XgFlowChart({
   summaryData,
-  shotsData = [],
+  shotsData,
   chartImage = '/output/08fd33_4/xg_flow_chart.png',
+  onSelectShot,
+  activeShotId,
 }: XgFlowChartProps) {
-  const [activeView, setActiveView] = useState<'chart' | 'shots'>('chart');
+  const [activeView, setActiveView] = useState<'chart' | 'shots'>('shots');
   const [filterTeam, setFilterTeam] = useState<'all' | '0' | '1'>('all');
 
-  const stats = computeXgStats(summaryData, shotsData);
+  const resolvedShots = (shotsData && shotsData.length > 0) ? shotsData : DEFAULT_MATCH_SHOTS;
+  const stats = computeXgStats(summaryData, resolvedShots);
 
-  const filteredShots = shotsData.filter((shot) => {
+  const filteredShots = resolvedShots.filter((shot) => {
     if (filterTeam === 'all') return true;
     return String(shot.team) === filterTeam;
   });
@@ -59,15 +64,14 @@ export function XgFlowChart({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <CardTitle className="text-base font-bold flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-emerald-400" /> Expected Goals (xG) & Threat Flow
+              <Target className="h-5 w-5 text-emerald-400" /> Expected Goals (xG) & Threat Progression
             </CardTitle>
             <CardDescription className="text-xs">
-              Cumulative match state timeline and logistic shot value probability model across 90 minutes.
+              Step-function cumulative threat curve and granular 10-shot classified occurrence table.
             </CardDescription>
           </div>
 
           <div className="flex items-center gap-2">
-            {/* View Switcher */}
             <div className="flex items-center gap-1 bg-background/60 p-1 rounded-lg border border-border/50 text-xs">
               <button
                 onClick={() => setActiveView('chart')}
@@ -87,7 +91,7 @@ export function XgFlowChart({
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                <ListFilter className="h-3.5 w-3.5" /> Shot Matrix ({shotsData.length})
+                <ListFilter className="h-3.5 w-3.5" /> Shot Matrix ({resolvedShots.length})
               </button>
             </div>
           </div>
@@ -130,9 +134,10 @@ export function XgFlowChart({
         ) : (
           /* Detailed Shot Matrix Table */
           <div className="space-y-3">
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground font-medium">
-                Showing all classified shot events with logistic xG ratings
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span className="text-muted-foreground font-medium flex items-center gap-1.5">
+                <Film className="h-3.5 w-3.5 text-primary" />
+                Click any shot row to <span className="text-primary font-bold">seek match video clip</span>
               </span>
               <div className="flex items-center gap-1 bg-background/50 p-1 rounded border border-border/40">
                 <button
@@ -160,6 +165,7 @@ export function XgFlowChart({
               <table className="w-full text-left text-xs">
                 <thead className="bg-card/70 border-b border-border/50 text-muted-foreground font-semibold">
                   <tr>
+                    <th className="p-3 w-10">Clip</th>
                     <th className="p-3">Min</th>
                     <th className="p-3">Team</th>
                     <th className="p-3">Shooter</th>
@@ -170,43 +176,81 @@ export function XgFlowChart({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/30">
-                  {filteredShots.map((shot, idx) => (
-                    <tr key={idx} className="hover:bg-card/30 transition-colors">
-                      <td className="p-3 font-mono font-bold text-foreground">{shot.minute}&apos;</td>
-                      <td className="p-3">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
-                          shot.team === 0 ? 'bg-blue-500/20 text-blue-400' : 'bg-red-500/20 text-red-400'
-                        }`}>
-                          {shot.team === 0 ? 'Chelsea' : 'Arsenal'}
-                        </span>
-                      </td>
-                      <td className="p-3 font-semibold text-foreground">{shot.player}</td>
-                      <td className="p-3 text-muted-foreground">
-                        {shot.assister} <span className="text-[10px] text-emerald-400 font-bold">({shot.xa} xA)</span>
-                      </td>
-                      <td className="p-3 text-muted-foreground">
-                        {shot.isHeader ? 'Header' : 'Right/Left Foot'}
-                      </td>
-                      <td className="p-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-20 bg-background/60 rounded-full h-2 overflow-hidden border border-border/40">
-                            <div
-                              className={`h-full rounded-full ${
-                                shot.xg >= 0.7
-                                  ? 'bg-emerald-500'
-                                  : shot.xg >= 0.4
-                                    ? 'bg-amber-500'
-                                    : 'bg-blue-500'
-                              }`}
-                              style={{ width: `${Math.min(100, shot.xg * 100)}%` }}
-                            />
+                  {filteredShots.map((shot, idx) => {
+                    const isSelected = activeShotId === (shot.id ?? idx);
+                    return (
+                      <tr
+                        key={idx}
+                        onClick={() => onSelectShot?.(shot)}
+                        className={`cursor-pointer transition-all duration-150 ${
+                          isSelected
+                            ? 'bg-primary/20 border-l-4 border-primary'
+                            : 'hover:bg-card/40'
+                        }`}
+                      >
+                        <td className="p-3">
+                          <button
+                            type="button"
+                            className={`p-1.5 rounded-full transition-transform active:scale-95 ${
+                              isSelected
+                                ? 'bg-primary text-primary-foreground'
+                                : 'bg-secondary/70 hover:bg-primary hover:text-primary-foreground text-primary'
+                            }`}
+                            title="Play clip evidence"
+                          >
+                            <Play className="h-3 w-3 fill-current" />
+                          </button>
+                        </td>
+                        <td className="p-3 font-mono font-bold text-foreground">
+                          {shot.minute}&apos;
+                          {shot.clipStartSeconds !== undefined && (
+                            <span className="block text-[10px] text-muted-foreground font-normal">
+                              {Math.floor(shot.clipStartSeconds / 60)}:{(Math.floor(shot.clipStartSeconds % 60)).toString().padStart(2, '0')}
+                            </span>
+                          )}
+                        </td>
+                        <td className="p-3">
+                          <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
+                            shot.team === 0 ? 'bg-blue-500/20 text-blue-400' : 'bg-red-500/20 text-red-400'
+                          }`}>
+                            {shot.team === 0 ? 'Chelsea' : 'Arsenal'}
+                          </span>
+                        </td>
+                        <td className="p-3 font-semibold text-foreground">
+                          {shot.player}
+                          {shot.description && (
+                            <span className="block text-[10px] text-muted-foreground font-normal truncate max-w-[180px]">
+                              {shot.description}
+                            </span>
+                          )}
+                        </td>
+                        <td className="p-3 text-muted-foreground">
+                          {shot.assister} <span className="text-[10px] text-emerald-400 font-bold">({shot.xa} xA)</span>
+                        </td>
+                        <td className="p-3 text-muted-foreground">
+                          {shot.isHeader ? 'Header' : 'Right/Left Foot'}
+                        </td>
+                        <td className="p-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 bg-background/60 rounded-full h-2 overflow-hidden border border-border/40">
+                              <div
+                                className={`h-full rounded-full ${
+                                  shot.xg >= 0.7
+                                    ? 'bg-emerald-500'
+                                    : shot.xg >= 0.4
+                                      ? 'bg-amber-500'
+                                      : 'bg-blue-500'
+                                }`}
+                                style={{ width: `${Math.min(100, shot.xg * 100)}%` }}
+                              />
+                            </div>
+                            <span className="font-mono font-bold text-foreground">{shot.xg}</span>
                           </div>
-                          <span className="font-mono font-bold text-foreground">{shot.xg}</span>
-                        </div>
-                      </td>
-                      <td className="p-3 text-right">{getOutcomeBadge(shot.outcome)}</td>
-                    </tr>
-                  ))}
+                        </td>
+                        <td className="p-3 text-right">{getOutcomeBadge(shot.outcome)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -221,7 +265,7 @@ export function XgFlowChart({
               <span>Highest Quality Chance</span>
             </div>
             <p className="text-base font-bold text-foreground">
-              {stats.bestShot?.player ?? '#9 (ST)'} — {stats.bestShot?.xg ?? 0.9} xG
+              {stats.bestShot?.player ?? '#9 (ST)'} — {stats.bestShot?.xg ?? 0.88} xG
             </p>
             <p className="text-[11px] text-muted-foreground">
               Minute {stats.bestShot?.minute}&apos; ({stats.bestShot?.isHeader ? 'Header' : 'Foot'}) • {stats.bestShot?.outcome.toUpperCase()}

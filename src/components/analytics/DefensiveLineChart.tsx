@@ -1,14 +1,19 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Activity, ShieldAlert, ArrowDownCircle, ArrowUpCircle } from 'lucide-react';
+import { Activity, ShieldAlert, ArrowDownCircle, ArrowUpCircle, Play } from 'lucide-react';
 import { computeDefensiveLineStats, type TimeSeriesPoint } from '@/lib/defensiveLineUtils';
 
 interface DefensiveLineChartProps {
   timeSeriesData?: TimeSeriesPoint[];
   chartImage?: string;
+  onSelectClip?: (seconds: number, label: string) => void;
 }
 
-export function DefensiveLineChart({ timeSeriesData = [], chartImage = '/output/08fd33_4/defensive_line_chart.png' }: DefensiveLineChartProps) {
+export function DefensiveLineChart({
+  timeSeriesData = [],
+  chartImage = '/output/08fd33_4/defensive_line_chart.png',
+  onSelectClip
+}: DefensiveLineChartProps) {
   const stats = computeDefensiveLineStats(timeSeriesData);
 
   return (
@@ -46,39 +51,89 @@ export function DefensiveLineChart({ timeSeriesData = [], chartImage = '/output/
         {/* Tactical Breakdown Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1 text-xs">
           <div className="p-2.5 rounded-lg border border-border/50 bg-background/50 space-y-1">
-            <div className="flex items-center gap-1.5 font-semibold text-blue-400">
-              <ArrowUpCircle className="h-4 w-4" />
-              <span>Chelsea Max Press</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-semibold text-blue-400">
+                <ArrowUpCircle className="h-4 w-4" />
+                <span>Chelsea Max Press</span>
+              </div>
+              {onSelectClip && (
+                <button
+                  type="button"
+                  onClick={() => onSelectClip(15.0, 'Chelsea: High Press Transition (Minute 7)')}
+                  className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
+                  title="Play Clip"
+                >
+                  <Play className="h-3 w-3 fill-current" />
+                </button>
+              )}
             </div>
             <p className="text-lg font-bold text-foreground">{stats.team0Max.height}m</p>
             <p className="text-[11px] text-muted-foreground">Reached at Min {stats.team0Max.minute}</p>
           </div>
 
           <div className="p-2.5 rounded-lg border border-border/50 bg-background/50 space-y-1">
-            <div className="flex items-center gap-1.5 font-semibold text-blue-400">
-              <ArrowDownCircle className="h-4 w-4" />
-              <span>Chelsea Deepest Drop</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-semibold text-blue-400">
+                <ArrowDownCircle className="h-4 w-4" />
+                <span>Chelsea Deepest Drop</span>
+              </div>
+              {onSelectClip && (
+                <button
+                  type="button"
+                  onClick={() => onSelectClip(78.0, 'Chelsea: Low Block Defending (Minute 29)')}
+                  className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
+                  title="Play Clip"
+                >
+                  <Play className="h-3 w-3 fill-current" />
+                </button>
+              )}
             </div>
             <p className="text-lg font-bold text-foreground">{stats.team0Min.height}m</p>
-            <p className="text-[11px] text-muted-foreground">Retreated at Min {stats.team0Min.minute}</p>
+            <p className="text-[11px] text-muted-foreground">Low block at Min {stats.team0Min.minute}</p>
           </div>
 
           <div className="p-2.5 rounded-lg border border-border/50 bg-background/50 space-y-1">
-            <div className="flex items-center gap-1.5 font-semibold text-red-400">
-              <ArrowUpCircle className="h-4 w-4" />
-              <span>Arsenal Max Press</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-semibold text-red-400">
+                <ArrowUpCircle className="h-4 w-4" />
+                <span>Arsenal Max Press</span>
+              </div>
+              {onSelectClip && (
+                <button
+                  type="button"
+                  onClick={() => onSelectClip(138.0, 'Arsenal: High Counter Press (Minute 44)')}
+                  className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
+                  title="Play Clip"
+                >
+                  <Play className="h-3 w-3 fill-current" />
+                </button>
+              )}
             </div>
             <p className="text-lg font-bold text-foreground">{stats.team1Max.height}m</p>
             <p className="text-[11px] text-muted-foreground">Reached at Min {stats.team1Max.minute}</p>
           </div>
 
           <div className="p-2.5 rounded-lg border border-border/50 bg-background/50 space-y-1">
-            <div className="flex items-center gap-1.5 font-semibold text-red-400">
-              <ShieldAlert className="h-4 w-4 text-amber-400" />
-              <span>Arsenal Deepest Drop</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-semibold text-red-400">
+                <ShieldAlert className="h-4 w-4 text-amber-400" />
+                <span>Backline Vulnerability</span>
+              </div>
+              {onSelectClip && (
+                <button
+                  type="button"
+                  onClick={() => onSelectClip(225.0, 'Arsenal: Box Compression Breach (Minute 71)')}
+                  className="p-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary transition-colors"
+                  title="Play Clip"
+                >
+                  <Play className="h-3 w-3 fill-current" />
+                </button>
+              )}
             </div>
-            <p className="text-lg font-bold text-foreground">{stats.team1Min.height}m</p>
-            <p className="text-[11px] text-muted-foreground">Retreated at Min {stats.team1Min.minute}</p>
+            <p className="text-lg font-bold text-foreground">
+              {(stats.team0Avg - stats.team1Avg).toFixed(1)}m Delta
+            </p>
+            <p className="text-[11px] text-muted-foreground">Chelsea sits slightly deeper on average</p>
           </div>
         </div>
       </CardContent>

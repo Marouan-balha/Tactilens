@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Target, Compass, Flame, ShieldCheck } from 'lucide-react';
+import { Target, Compass, Flame, ShieldCheck, Play, Film } from 'lucide-react';
 import { formatZone14Insights, type Zone14SummaryData } from '@/lib/zone14Utils';
 
 interface Zone14ChartProps {
   summaryData?: Zone14SummaryData;
   outputBasePath?: string;
+  onSelectClip?: (seconds: number, label: string) => void;
 }
 
 export function Zone14Chart({
   summaryData,
-  outputBasePath = '/output/08fd33_4'
+  outputBasePath = '/output/08fd33_4',
+  onSelectClip
 }: Zone14ChartProps) {
   const [selectedView, setSelectedView] = useState<'team0' | 'team1' | 'combined'>('team0');
   const insights = formatZone14Insights(summaryData);
@@ -80,35 +82,51 @@ export function Zone14Chart({
 
         {/* Tactical Breakdown Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 text-xs">
-          {insights.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-3 rounded-lg border border-border/50 bg-background/50 space-y-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-foreground flex items-center gap-1.5 text-sm">
-                  <Target className="h-4 w-4 text-amber-400" /> {item.teamName}
-                </span>
-                <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-primary/20 text-primary border border-primary/30">
-                  {item.primaryChannel}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-muted-foreground pt-1">
-                <div className="p-2 rounded bg-background/40 border border-border/40">
-                  <span className="text-[11px] block text-muted-foreground">Zone 14 Volume</span>
-                  <span className="text-base font-bold text-foreground">{item.zone14Volume} touches</span>
+          {insights.map((item, idx) => {
+            const clipSeconds = idx === 0 ? 44.0 : 138.0;
+            const clipLabel = idx === 0 ? 'Chelsea: Min 18 Left Half-Space Penetration' : 'Arsenal: Min 44 Right Half-Space Transition';
+            return (
+              <div
+                key={idx}
+                className="p-3 rounded-lg border border-border/50 bg-background/50 space-y-2 hover:border-primary/40 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-foreground flex items-center gap-1.5 text-sm">
+                    <Target className="h-4 w-4 text-amber-400" /> {item.teamName}
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-primary/20 text-primary border border-primary/30">
+                    {item.primaryChannel}
+                  </span>
                 </div>
-                <div className="p-2 rounded bg-background/40 border border-border/40">
-                  <span className="text-[11px] block text-muted-foreground">Half-Space Balance (L / R)</span>
-                  <span className="text-xs font-semibold text-foreground">{item.halfSpaceRatio}</span>
+                <div className="grid grid-cols-2 gap-2 text-muted-foreground pt-1">
+                  <div className="p-2 rounded bg-background/40 border border-border/40">
+                    <span className="text-[11px] block text-muted-foreground">Zone 14 Volume</span>
+                    <span className="text-base font-bold text-foreground">{item.zone14Volume} touches</span>
+                  </div>
+                  <div className="p-2 rounded bg-background/40 border border-border/40">
+                    <span className="text-[11px] block text-muted-foreground">Half-Space Balance (L / R)</span>
+                    <span className="text-xs font-semibold text-foreground">{item.halfSpaceRatio}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-1">
+                  <p className="text-xs text-muted-foreground flex items-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                    Threat: <strong className="text-foreground">{item.threatRating}</strong>
+                  </p>
+                  {onSelectClip && (
+                    <button
+                      type="button"
+                      onClick={() => onSelectClip(clipSeconds, clipLabel)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded bg-secondary hover:bg-primary hover:text-primary-foreground text-primary text-[11px] font-medium transition-colors"
+                    >
+                      <Play className="h-3 w-3 fill-current" />
+                      Seek Clip
+                    </button>
+                  )}
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                Threat Rating: <strong className="text-foreground">{item.threatRating}</strong>
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </CardContent>
     </Card>

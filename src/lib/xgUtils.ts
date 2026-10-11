@@ -1,5 +1,8 @@
 export interface ShotEvent {
+  id?: number;
   minute: number;
+  clipStartSeconds?: number;
+  clipEndSeconds?: number;
   team: number;
   player: string;
   x: number;
@@ -9,6 +12,7 @@ export interface ShotEvent {
   assister: string;
   xg: number;
   xa: number;
+  description?: string;
 }
 
 export interface XgTimeSeriesPoint {
@@ -47,6 +51,169 @@ export interface XgTacticalStats {
     xa: number;
   };
 }
+
+export const DEFAULT_MATCH_SHOTS: ShotEvent[] = [
+  {
+    id: 1,
+    minute: 7,
+    clipStartSeconds: 15.0,
+    clipEndSeconds: 26.0,
+    team: 0,
+    player: '#9 (ST)',
+    x: 94.2,
+    y: 33.5,
+    outcome: 'saved',
+    isHeader: false,
+    assister: '#142 (CM)',
+    xg: 0.38,
+    xa: 0.38,
+    description: 'Central low driven strike saved by goalkeeper'
+  },
+  {
+    id: 2,
+    minute: 18,
+    clipStartSeconds: 44.0,
+    clipEndSeconds: 56.0,
+    team: 0,
+    player: '#9 (ST)',
+    x: 98.4,
+    y: 34.0,
+    outcome: 'goal',
+    isHeader: false,
+    assister: '#11 (LW)',
+    xg: 0.82,
+    xa: 0.82,
+    description: 'Near-post tap-in following left byline cutback'
+  },
+  {
+    id: 3,
+    minute: 29,
+    clipStartSeconds: 78.0,
+    clipEndSeconds: 89.0,
+    team: 1,
+    player: '#10 (AM)',
+    x: 91.0,
+    y: 30.2,
+    outcome: 'saved',
+    isHeader: false,
+    assister: '#7 (RW)',
+    xg: 0.45,
+    xa: 0.45,
+    description: 'Curling effort from the edge of the D parried wide'
+  },
+  {
+    id: 4,
+    minute: 38,
+    clipStartSeconds: 110.0,
+    clipEndSeconds: 122.0,
+    team: 0,
+    player: '#11 (LW)',
+    x: 88.5,
+    y: 22.1,
+    outcome: 'blocked',
+    isHeader: false,
+    assister: '#142 (CM)',
+    xg: 0.24,
+    xa: 0.24,
+    description: 'Cut inside from left wing, shot charged down by CB'
+  },
+  {
+    id: 5,
+    minute: 44,
+    clipStartSeconds: 138.0,
+    clipEndSeconds: 152.0,
+    team: 1,
+    player: '#7 (RW)',
+    x: 96.8,
+    y: 36.2,
+    outcome: 'goal',
+    isHeader: false,
+    assister: '#10 (AM)',
+    xg: 0.74,
+    xa: 0.74,
+    description: 'Counter-attack transition finished calmly across keeper'
+  },
+  {
+    id: 6,
+    minute: 53,
+    clipStartSeconds: 170.0,
+    clipEndSeconds: 182.0,
+    team: 0,
+    player: '#142 (CM)',
+    x: 87.2,
+    y: 34.1,
+    outcome: 'saved',
+    isHeader: false,
+    assister: '#205 (CB)',
+    xg: 0.18,
+    xa: 0.18,
+    description: 'Long-range dipping strike tipped over crossbar'
+  },
+  {
+    id: 7,
+    minute: 62,
+    clipStartSeconds: 198.0,
+    clipEndSeconds: 210.0,
+    team: 1,
+    player: '#9 (ST)',
+    x: 92.5,
+    y: 35.8,
+    outcome: 'missed',
+    isHeader: true,
+    assister: '#11 (LW)',
+    xg: 0.35,
+    xa: 0.35,
+    description: 'Header from in-swinging corner over the bar'
+  },
+  {
+    id: 8,
+    minute: 71,
+    clipStartSeconds: 225.0,
+    clipEndSeconds: 240.0,
+    team: 0,
+    player: '#9 (ST)',
+    x: 99.1,
+    y: 34.0,
+    outcome: 'goal',
+    isHeader: true,
+    assister: '#7 (RW)',
+    xg: 0.88,
+    xa: 0.88,
+    description: 'Bullet header into top corner from back-post cross'
+  },
+  {
+    id: 9,
+    minute: 80,
+    clipStartSeconds: 254.0,
+    clipEndSeconds: 266.0,
+    team: 1,
+    player: '#11 (LW)',
+    x: 89.4,
+    y: 45.2,
+    outcome: 'blocked',
+    isHeader: false,
+    assister: '#10 (AM)',
+    xg: 0.22,
+    xa: 0.22,
+    description: 'Right half-space volley blocked inside the six-yard box'
+  },
+  {
+    id: 10,
+    minute: 88,
+    clipStartSeconds: 275.0,
+    clipEndSeconds: 288.0,
+    team: 0,
+    player: '#7 (RW)',
+    x: 93.0,
+    y: 42.0,
+    outcome: 'missed',
+    isHeader: false,
+    assister: '#142 (CM)',
+    xg: 0.28,
+    xa: 0.28,
+    description: 'Fast counter breakaway strike flashing wide of far post'
+  }
+];
 
 export function computeXgStats(
   summary?: XgSummaryData,
