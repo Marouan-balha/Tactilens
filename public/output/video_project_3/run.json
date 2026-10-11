@@ -1,0 +1,37 @@
+{
+  "command": "run_pipeline.py --video /work/input/footage.mp4 --model /work/models/best.pt --output-dir /work/output --device cuda:0",
+  "durationSeconds": 1563.433,
+  "finishedAt": "2026-10-11T15:07:29.126811+00:00",
+  "model": {
+    "checksum": "sha256:b4c8373945c0e5e696a6fa805415c5a16350c1bdd98074e4d34e9ada83727855",
+    "path": "/work/models/best.pt"
+  },
+  "operatingSystem": "Linux-6.1.186-228.376.amzn2023.x86_64-x86_64-with-glibc2.35",
+  "outputs": {
+    "annotatedVideo": "tracked.mp4",
+    "ballObservations": "ball_observations.json",
+    "tracks": "tracks.json",
+    "tracksWithTeams": "tracks_with_teams.json"
+  },
+  "parameters": {
+    "calibrationFrame": 3830,
+    "confidence": 0.15,
+    "device": "cuda:0",
+    "sampleFrames": 25
+  },
+  "python": "3.11.10",
+  "quality": {
+    "events": "unavailable",
+    "evidenceEligibility": "candidate-only",
+    "pitchCalibration": "unavailable",
+    "teamCalibration": "available"
+  },
+  "runId": "20261011T144125Z",
+  "schemaVersion": 1,
+  "startedAt": "2026-10-11T14:41:25.693616+00:00",
+  "status": "observations-only",
+  "video": {
+    "checksum": "sha256:0f41addef7835fde93776fe720cc05d5eb497432cce997ec5cde6ce2187c798c",
+    "path": "/work/input/footage.mp4"
+  }
+}

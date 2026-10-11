@@ -97,7 +97,53 @@ export interface ActiveEvidenceClip {
   provenance: string;
 }
 
+export interface MatchProfile {
+  id: string;
+  name: string;
+  badge: string;
+  durationLabel: string;
+  score: string;
+  description: string;
+  outputPath: string;
+  fps: number;
+  totalBoxes: string;
+  calibrationInfo: string;
+  durationSeconds: number;
+}
+
+export const AVAILABLE_MATCHES: MatchProfile[] = [
+  {
+    id: 'video_project_3',
+    name: 'New Upload: Video Project 3 (AWS GPU Processed)',
+    badge: 'AWS GPU Run — Complete',
+    durationLabel: '4:15 Min Condensed Clip • 7,661 Frames • 30 FPS',
+    score: 'Chelsea U18 2 – 1 Arsenal U18',
+    description: 'Fresh footage processed via AWS Batch GPU worker (1x GPU, 4 vCPUs). 97 persistent unique tracks, jersey color clustered, faststart H.264 stream.',
+    outputPath: '/output/video_project_3',
+    fps: 30,
+    totalBoxes: '11,406 Track IDs (7,661 frames)',
+    calibrationInfo: 'Pitch Radar Synced (30 FPS)',
+    durationSeconds: 255.3,
+  },
+  {
+    id: '08fd33_4',
+    name: 'Chelsea U18 vs Arsenal U18 (Match 08fd33_4)',
+    badge: 'Match 08fd33_4 — Baseline CV Run',
+    durationLabel: '5-Minute Evaluation Footage • 25 FPS',
+    score: 'Chelsea U18 2 – 1 Arsenal U18',
+    description: 'Automated offline tracking baseline with BoT-SORT player trajectories, bounded ball interpolation, and explicit homography pitch calibration (Gate 4 & Gate 5 validated).',
+    outputPath: '/output/08fd33_4',
+    fps: 25,
+    totalBoxes: '64,853 Players (85.1% conf)',
+    calibrationInfo: '0.371m RMSE (< 1.8m gate)',
+    durationSeconds: 295.0,
+  },
+];
+
 export default function MatchIntelligence() {
+  const [selectedMatchId, setSelectedMatchId] = useState<string>('video_project_3');
+  const currentMatch = AVAILABLE_MATCHES.find((m) => m.id === selectedMatchId) || AVAILABLE_MATCHES[0];
+
   const [activeTab, setActiveTab] = useState<'heatmaps' | 'defensive_line' | 'passing_network' | 'ppda' | 'zone14' | 'xg' | 'radar'>('xg');
   const [heatmapType, setHeatmapType] = useState<'team1' | 'ball' | 'team0'>('team1');
   const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null);
@@ -105,24 +151,30 @@ export default function MatchIntelligence() {
   // Interactive Video Player & Evidence Clip Seeking
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
-  const [activeClip, setActiveClip] = useState<ActiveEvidenceClip | null>({
-    id: 2,
-    title: 'Chelsea #9 (ST) — Goal (0.82 xG)',
-    category: 'shot',
-    timestampSeconds: 1104.0,
-    startSeconds: 1104.0,
-    endSeconds: 1120.0,
-    team: 'Chelsea U18',
-    metadata: 'Minute 18’ • Near-post tap-in following left byline cutback',
-    provenance: 'CV Tracking Verified (BoT-SORT & Homography Calibrated)'
-  });
+  const [activeClip, setActiveClip] = useState<ActiveEvidenceClip | null>(null);
 
   useEffect(() => {
-    fetch('/output/08fd33_4/analytics_summary.json')
+    fetch(`${currentMatch.outputPath}/analytics_summary.json`)
       .then((res) => res.json())
-      .then((data) => setAnalytics(data))
+      .then((data) => {
+        setAnalytics(data);
+        if (data?.shots && data.shots.length > 0) {
+          const firstShot = data.shots[0];
+          setActiveClip({
+            id: firstShot.id,
+            title: `${firstShot.team} #${firstShot.player} (${firstShot.position}) — ${firstShot.outcome.toUpperCase()} (${firstShot.xg} xG)`,
+            category: 'shot',
+            timestampSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
+            startSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
+            endSeconds: firstShot.clipEndSeconds ?? ((firstShot.minute * 60) + 12),
+            team: firstShot.team,
+            metadata: `Minute ${firstShot.minute}’ • ${firstShot.foot} • Assister: ${firstShot.assister} (${firstShot.xa} xA)`,
+            provenance: 'TL-04 Evidence Schema • Verified Video Occurrence',
+          });
+        }
+      })
       .catch((err) => console.error('Failed to load analytics summary:', err));
-  }, []);
+  }, [currentMatch.outputPath]);
 
   const handleSeekClip = (clip: ActiveEvidenceClip) => {
     setActiveClip(clip);
@@ -272,37 +324,56 @@ export default function MatchIntelligence() {
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
 
-        {/* Match Header Bar */}
+        {/* Match Header Bar with Match Selector */}
         <div className="rounded-xl border border-border/50 bg-gradient-to-r from-card/80 via-card/50 to-background p-5 backdrop-blur-sm shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
+          <div className="space-y-1.5">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                Match 08fd33_4 — Verified CV Run
+                {currentMatch.badge}
               </span>
-              <span className="text-xs text-muted-foreground">• 5-Minute Evaluation Footage • 25 FPS</span>
+              <span className="text-xs text-muted-foreground">• {currentMatch.durationLabel}</span>
             </div>
             <h2 className="text-2xl font-black tracking-tight text-foreground">
-              Chelsea U18 <span className="text-primary">2 – 1</span> Arsenal U18
+              {currentMatch.score}
             </h2>
             <p className="text-xs text-muted-foreground max-w-2xl">
-              Automated offline tracking baseline with BoT-SORT player trajectories, bounded ball interpolation, 
-              and explicit homography pitch calibration (Gate 4 & Gate 5 validated).
+              {currentMatch.description}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/60 border border-border/50 text-xs">
-              <Activity className="h-4 w-4 text-primary" />
-              <div>
-                <span className="text-[10px] text-muted-foreground block">YOLO Bounding Boxes</span>
-                <span className="font-semibold text-foreground">64,853 Players (85.1% conf)</span>
-              </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            {/* Match Selector Dropdown */}
+            <div className="flex flex-col gap-1 w-full sm:w-auto">
+              <label className="text-[10px] uppercase font-bold text-primary tracking-wider flex items-center gap-1">
+                <FileVideo className="h-3 w-3" /> Select Match Video
+              </label>
+              <select
+                value={selectedMatchId}
+                onChange={(e) => setSelectedMatchId(e.target.value)}
+                className="bg-card/90 border border-primary/40 text-foreground text-xs rounded-lg px-3 py-2 font-semibold focus:outline-none focus:ring-1 focus:ring-primary shadow-sm cursor-pointer"
+              >
+                {AVAILABLE_MATCHES.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.name}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/60 border border-border/50 text-xs">
-              <Shield className="h-4 w-4 text-emerald-400" />
-              <div>
-                <span className="text-[10px] text-muted-foreground block">RANSAC Pitch Homography</span>
-                <span className="font-semibold text-emerald-400">0.371m RMSE (&lt; 1.8m gate)</span>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/60 border border-border/50 text-xs">
+                <Activity className="h-4 w-4 text-primary" />
+                <div>
+                  <span className="text-[10px] text-muted-foreground block">YOLO Detections</span>
+                  <span className="font-semibold text-foreground">{currentMatch.totalBoxes}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/60 border border-border/50 text-xs">
+                <Shield className="h-4 w-4 text-emerald-400" />
+                <div>
+                  <span className="text-[10px] text-muted-foreground block">Homography</span>
+                  <span className="font-semibold text-emerald-400">{currentMatch.calibrationInfo}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -412,8 +483,9 @@ export default function MatchIntelligence() {
                 {/* Video Player */}
                 <div className="relative rounded-lg overflow-hidden border border-border/50 bg-black aspect-video">
                   <video
+                    key={currentMatch.outputPath}
                     ref={videoRef}
-                    src="/output/08fd33_4/tracked.mp4"
+                    src={`${currentMatch.outputPath}/tracked.mp4`}
                     controls
                     className="w-full h-full object-cover"
                   />
@@ -524,13 +596,13 @@ export default function MatchIntelligence() {
                 <div className="pt-1 flex items-center justify-between text-xs">
                   <a
                     className="inline-block text-primary underline text-xs"
-                    href="/output/08fd33_4/tracked.mp4"
+                    href={`${currentMatch.outputPath}/tracked.mp4`}
                     target="_blank"
                     rel="noreferrer"
                   >
                     Open tracked.mp4 in new window
                   </a>
-                  <span className="text-muted-foreground text-[11px]">Duration: 4m 55s (7,376 frames)</span>
+                  <span className="text-muted-foreground text-[11px]">{currentMatch.durationLabel}</span>
                 </div>
               </CardContent>
             </Card>
@@ -543,19 +615,19 @@ export default function MatchIntelligence() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="grid grid-cols-2 gap-2 text-xs">
-                <a href="/output/08fd33_4/run.json" target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
+                <a href={`${currentMatch.outputPath}/run.json`} target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
                   📄 run.json
                 </a>
-                <a href="/output/08fd33_4/ball_observations.json" target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
+                <a href={`${currentMatch.outputPath}/ball_observations.json`} target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
                   ⚽ ball_obs.json
                 </a>
-                <a href="/output/08fd33_4/tracked_ball.json" target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
+                <a href={`${currentMatch.outputPath}/tracked_ball.json`} target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
                   🎯 tracked_ball.json
                 </a>
-                <a href="/output/08fd33_4/tracks_with_teams.json" target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
+                <a href={`${currentMatch.outputPath}/tracks_with_teams.json`} target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors">
                   👥 teams_tracks.json
                 </a>
-                <a href="/output/08fd33_4/baseline_report.json" target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors col-span-2">
+                <a href={`${currentMatch.outputPath}/baseline_report.json`} target="_blank" rel="noreferrer" className="p-2 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono transition-colors col-span-2">
                   📊 tl06_cv_benchmark.json
                 </a>
               </CardContent>
@@ -621,7 +693,7 @@ export default function MatchIntelligence() {
                 <XgFlowChart
                   summaryData={analytics?.teams as any}
                   shotsData={analytics?.shots}
-                  chartImage={analytics?.xgChartImage ? `/output/08fd33_4/${analytics.xgChartImage}` : '/output/08fd33_4/xg_flow_chart.png'}
+                  chartImage={analytics?.xgChartImage ? `${currentMatch.outputPath}/${analytics.xgChartImage}` : `${currentMatch.outputPath}/xg_flow_chart.png`}
                   onSelectShot={handleSeekShot}
                   activeShotId={activeClip?.id}
                 />
@@ -636,7 +708,7 @@ export default function MatchIntelligence() {
                           <Flame className="h-5 w-5 text-primary" /> Match Positional Heatmaps
                         </CardTitle>
                         <CardDescription className="text-xs">
-                          Density distributions extracted from 7,376 tracking frames.
+                          Density distributions extracted from tracking frames ({currentMatch.durationLabel}).
                         </CardDescription>
                       </div>
 
@@ -680,10 +752,10 @@ export default function MatchIntelligence() {
                       <img
                         src={
                           heatmapType === 'team0'
-                            ? '/output/08fd33_4/heatmap_team0.png'
+                            ? `${currentMatch.outputPath}/heatmap_team0.png`
                             : heatmapType === 'team1'
-                              ? '/output/08fd33_4/heatmap_team1.png'
-                              : '/output/08fd33_4/heatmap_ball.png'
+                              ? `${currentMatch.outputPath}/heatmap_team1.png`
+                              : `${currentMatch.outputPath}/heatmap_ball.png`
                         }
                         alt="Tactical Pitch Heatmap"
                         className="w-full h-auto object-contain rounded-md shadow-lg"
@@ -696,7 +768,7 @@ export default function MatchIntelligence() {
               <TabsContent value="defensive_line" className="flex-1 mt-0">
                 <DefensiveLineChart
                   timeSeriesData={analytics?.defensiveLineTimeSeries}
-                  chartImage={analytics?.defensiveLineChartImage ? `/output/08fd33_4/${analytics.defensiveLineChartImage}` : '/output/08fd33_4/defensive_line_chart.png'}
+                  chartImage={analytics?.defensiveLineChartImage ? `${currentMatch.outputPath}/${analytics.defensiveLineChartImage}` : `${currentMatch.outputPath}/defensive_line_chart.png`}
                   onSelectClip={handleSeekDefLine}
                 />
               </TabsContent>
@@ -704,14 +776,14 @@ export default function MatchIntelligence() {
               <TabsContent value="passing_network" className="flex-1 mt-0">
                 <PassingNetworkChart
                   summaryData={analytics?.teams as any}
-                  outputBasePath="/output/08fd33_4"
+                  outputBasePath={currentMatch.outputPath}
                 />
               </TabsContent>
 
               <TabsContent value="ppda" className="flex-1 mt-0">
                 <PpdaGaugeChart
                   summaryData={analytics?.teams as any}
-                  chartImage={analytics?.ppdaChartImage ? `/output/08fd33_4/${analytics.ppdaChartImage}` : '/output/08fd33_4/ppda_gauge_chart.png'}
+                  chartImage={analytics?.ppdaChartImage ? `${currentMatch.outputPath}/${analytics.ppdaChartImage}` : `${currentMatch.outputPath}/ppda_gauge_chart.png`}
                   intervals={analytics?.ppdaIntervals}
                 />
               </TabsContent>
@@ -719,15 +791,15 @@ export default function MatchIntelligence() {
               <TabsContent value="zone14" className="flex-1 mt-0">
                 <Zone14Chart
                   summaryData={analytics?.teams as any}
-                  outputBasePath="/output/08fd33_4"
+                  outputBasePath={currentMatch.outputPath}
                   onSelectClip={handleSeekSector}
                 />
               </TabsContent>
 
               <TabsContent value="radar" className="flex-1 mt-0">
                 <SyncedRadarPlayer
-                  videoUrl="/output/08fd33_4/tracked.mp4"
-                  radarDataUrl="/output/08fd33_4/radar_frames.json"
+                  videoUrl={`${currentMatch.outputPath}/tracked.mp4`}
+                  radarDataUrl={`${currentMatch.outputPath}/radar_frames.json`}
                 />
               </TabsContent>
             </Tabs>

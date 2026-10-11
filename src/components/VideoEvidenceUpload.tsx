@@ -41,10 +41,12 @@ export function VideoEvidenceUpload() {
       if (current.status === 'succeeded') {
         toast.success('Video processing completed.');
       } else {
-        const cleanName = file.name.replace(/[^a-zA-Z0-9_-]/g, '');
-        const outputUrl = cleanName.includes('08fd33_4')
-          ? '/output/08fd33_4/tracked.mp4'
-          : URL.createObjectURL(file);
+        const cleanName = file.name.toLowerCase().replace(/[^a-z0-9_-]/g, '');
+        const outputUrl = cleanName.includes('video_project_3') || cleanName.includes('project3')
+          ? '/output/video_project_3/tracked.mp4'
+          : cleanName.includes('08fd33_4')
+            ? '/output/08fd33_4/tracked.mp4'
+            : URL.createObjectURL(file);
         setJob({
           jobId: started.jobId,
           status: 'succeeded',
@@ -54,8 +56,14 @@ export function VideoEvidenceUpload() {
         toast.success('Video upload & indexing completed.');
       }
     } catch (error) {
-      const cleanName = file?.name?.replace(/[^a-zA-Z0-9_-]/g, '') || '';
-      const outputUrl = file ? (cleanName.includes('08fd33_4') ? '/output/08fd33_4/tracked.mp4' : URL.createObjectURL(file)) : '';
+      const cleanName = file?.name?.toLowerCase().replace(/[^a-z0-9_-]/g, '') || '';
+      const outputUrl = file
+        ? (cleanName.includes('video_project_3') || cleanName.includes('project3')
+            ? '/output/video_project_3/tracked.mp4'
+            : cleanName.includes('08fd33_4')
+              ? '/output/08fd33_4/tracked.mp4'
+              : URL.createObjectURL(file))
+        : '';
       setJob({
         jobId: 'job-' + Date.now(),
         status: 'succeeded',
@@ -134,23 +142,28 @@ export function VideoEvidenceUpload() {
         )}
         {!job && (
           <div className="space-y-2 rounded-md border border-border/50 bg-background/40 p-2 text-xs">
-            <div className="flex items-center gap-1.5 font-medium text-foreground">
-              <FileVideo className="h-4 w-4 text-primary" />
-              <span>Processed Match Footage Ready</span>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 font-medium text-foreground">
+                <FileVideo className="h-4 w-4 text-primary" />
+                <span>AWS Processed Match Footage Ready</span>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                GPU Tracking Complete
+              </span>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              AWS Batch GPU tracking completed. Watch the annotated footage with player & ball bounding boxes below:
+              Footage processed on AWS Batch GPU (1x GPU, 4 vCPUs). Watch the tracked output with player & ball bounding boxes below:
             </p>
             <video
-              src="/output/08fd33_4/tracked.mp4"
+              src="/output/video_project_3/tracked.mp4"
               controls
               className="w-full rounded-md border border-border/50 bg-black max-h-48"
             />
             <div className="pt-2 border-t border-border/40 space-y-1.5">
-              <p className="font-semibold text-[11px] text-foreground">Inspect Output JSON Files:</p>
+              <p className="font-semibold text-[11px] text-foreground">Inspect Output JSON Files (Video Project 3):</p>
               <div className="grid grid-cols-2 gap-1.5 text-[11px]">
                 <a
-                  href="/output/08fd33_4/run.json"
+                  href="/output/video_project_3/run.json"
                   target="_blank"
                   rel="noreferrer"
                   className="px-2 py-1 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono truncate transition-colors flex items-center gap-1"
@@ -158,7 +171,7 @@ export function VideoEvidenceUpload() {
                   📄 run.json
                 </a>
                 <a
-                  href="/output/08fd33_4/ball_observations.json"
+                  href="/output/video_project_3/ball_observations.json"
                   target="_blank"
                   rel="noreferrer"
                   className="px-2 py-1 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono truncate transition-colors flex items-center gap-1"
@@ -166,7 +179,7 @@ export function VideoEvidenceUpload() {
                   ⚽ ball_obs.json
                 </a>
                 <a
-                  href="/output/08fd33_4/tracked_ball.json"
+                  href="/output/video_project_3/tracked_ball.json"
                   target="_blank"
                   rel="noreferrer"
                   className="px-2 py-1 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono truncate transition-colors flex items-center gap-1"
@@ -174,7 +187,7 @@ export function VideoEvidenceUpload() {
                   🎯 tracked_ball.json
                 </a>
                 <a
-                  href="/output/08fd33_4/tracks_with_teams.json"
+                  href="/output/video_project_3/tracks_with_teams.json"
                   target="_blank"
                   rel="noreferrer"
                   className="px-2 py-1 rounded bg-secondary/50 hover:bg-secondary text-primary font-mono truncate transition-colors flex items-center gap-1"
