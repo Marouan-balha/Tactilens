@@ -996,7 +996,10 @@
       "isHeader": false,
       "assister": "#142 (CM)",
       "xg": 0.75,
-      "xa": 0.75
+      "xa": 0.75,
+      "id": 1,
+      "clipStartSeconds": 720.0,
+      "clipEndSeconds": 735.0
     },
     {
       "minute": 24,
@@ -1008,7 +1011,10 @@
       "isHeader": false,
       "assister": "#142 (CM)",
       "xg": 0.89,
-      "xa": 0.89
+      "xa": 0.89,
+      "id": 2,
+      "clipStartSeconds": 1440.0,
+      "clipEndSeconds": 1455.0
     },
     {
       "minute": 31,
@@ -1020,7 +1026,10 @@
       "isHeader": false,
       "assister": "#7 (RW)",
       "xg": 0.45,
-      "xa": 0.45
+      "xa": 0.45,
+      "id": 3,
+      "clipStartSeconds": 1860.0,
+      "clipEndSeconds": 1875.0
     },
     {
       "minute": 39,
@@ -1032,7 +1041,10 @@
       "isHeader": false,
       "assister": "#10 (AM)",
       "xg": 0.83,
-      "xa": 0.83
+      "xa": 0.83,
+      "id": 4,
+      "clipStartSeconds": 2340.0,
+      "clipEndSeconds": 2355.0
     },
     {
       "minute": 44,
@@ -1044,7 +1056,10 @@
       "isHeader": false,
       "assister": "#8 (CM)",
       "xg": 0.33,
-      "xa": 0.33
+      "xa": 0.33,
+      "id": 5,
+      "clipStartSeconds": 2640.0,
+      "clipEndSeconds": 2655.0
     },
     {
       "minute": 58,
@@ -1056,7 +1071,10 @@
       "isHeader": true,
       "assister": "#3 (LB)",
       "xg": 0.9,
-      "xa": 0.9
+      "xa": 0.9,
+      "id": 6,
+      "clipStartSeconds": 3480.0,
+      "clipEndSeconds": 3495.0
     },
     {
       "minute": 67,
@@ -1068,7 +1086,10 @@
       "isHeader": false,
       "assister": "#10 (AM)",
       "xg": 0.53,
-      "xa": 0.53
+      "xa": 0.53,
+      "id": 7,
+      "clipStartSeconds": 4020.0,
+      "clipEndSeconds": 4035.0
     },
     {
       "minute": 76,
@@ -1080,7 +1101,10 @@
       "isHeader": false,
       "assister": "#142 (CM)",
       "xg": 0.49,
-      "xa": 0.49
+      "xa": 0.49,
+      "id": 8,
+      "clipStartSeconds": 4560.0,
+      "clipEndSeconds": 4575.0
     },
     {
       "minute": 83,
@@ -1092,7 +1116,10 @@
       "isHeader": false,
       "assister": "#7 (RW)",
       "xg": 0.85,
-      "xa": 0.85
+      "xa": 0.85,
+      "id": 9,
+      "clipStartSeconds": 4980.0,
+      "clipEndSeconds": 4995.0
     },
     {
       "minute": 88,
@@ -1104,7 +1131,10 @@
       "isHeader": false,
       "assister": "#9 (ST)",
       "xg": 0.43,
-      "xa": 0.43
+      "xa": 0.43,
+      "id": 10,
+      "clipStartSeconds": 5280.0,
+      "clipEndSeconds": 5295.0
     }
   ]
 }

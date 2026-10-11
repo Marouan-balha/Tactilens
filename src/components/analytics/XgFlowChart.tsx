@@ -203,11 +203,18 @@ export function XgFlowChart({
                         </td>
                         <td className="p-3 font-mono font-bold text-foreground">
                           {shot.minute}&apos;
-                          {shot.clipStartSeconds !== undefined && (
-                            <span className="block text-[10px] text-muted-foreground font-normal">
-                              {Math.floor(shot.clipStartSeconds / 60)}:{(Math.floor(shot.clipStartSeconds % 60)).toString().padStart(2, '0')}
-                            </span>
-                          )}
+                          {(() => {
+                            const sec = (shot.clipStartSeconds !== undefined && shot.clipStartSeconds > 0)
+                              ? shot.clipStartSeconds
+                              : (shot.minute ? shot.minute * 60 : 0);
+                            const m = Math.floor(sec / 60);
+                            const s = Math.floor(sec % 60);
+                            return (
+                              <span className="block text-[10px] text-muted-foreground font-normal">
+                                {m.toString().padStart(2, '0')}:{s.toString().padStart(2, '0')}
+                              </span>
+                            );
+                          })()}
                         </td>
                         <td className="p-3">
                           <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${

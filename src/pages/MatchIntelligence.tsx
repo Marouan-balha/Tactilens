@@ -164,13 +164,20 @@ export default function MatchIntelligence() {
   };
 
   const handleSeekShot = (shot: ShotEvent) => {
+    const startSec = (shot.clipStartSeconds !== undefined && shot.clipStartSeconds > 0)
+      ? shot.clipStartSeconds
+      : (shot.minute ? shot.minute * 60 : 0);
+    const endSec = (shot.clipEndSeconds !== undefined && shot.clipEndSeconds > startSec)
+      ? shot.clipEndSeconds
+      : (startSec + 15);
+
     const clip: ActiveEvidenceClip = {
       id: shot.id,
       title: `${shot.team === 0 ? 'Chelsea' : 'Arsenal'} ${shot.player} — ${shot.outcome.toUpperCase()} (${shot.xg} xG)`,
       category: 'shot',
-      timestampSeconds: shot.clipStartSeconds ?? 0,
-      startSeconds: shot.clipStartSeconds ?? 0,
-      endSeconds: shot.clipEndSeconds ?? ((shot.clipStartSeconds ?? 0) + 12),
+      timestampSeconds: startSec,
+      startSeconds: startSec,
+      endSeconds: endSec,
       team: shot.team === 0 ? 'Chelsea U18' : 'Arsenal U18',
       metadata: `Minute ${shot.minute}’ • ${shot.isHeader ? 'Header' : 'Foot'} • Assister: ${shot.assister} (${shot.xa} xA)${shot.description ? ` • ${shot.description}` : ''}`,
       provenance: 'TL-04 Evidence Schema • Verified Video Occurrence'

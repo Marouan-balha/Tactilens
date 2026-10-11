@@ -376,7 +376,10 @@ def generate_analytics(output_dir):
         {"minute": 88, "team": 0, "player": "#10 (AM)", "x": 86.5, "y": 34.5, "outcome": "blocked", "isHeader": False, "assister": "#9 (ST)"}
     ]
 
-    for s in shots_data:
+    for idx, s in enumerate(shots_data):
+        s["id"] = idx + 1
+        s["clipStartSeconds"] = float(s["minute"] * 60)
+        s["clipEndSeconds"] = float(s["minute"] * 60 + 15)
         s["xg"] = calculate_shot_xg(s["x"], s["y"], s["isHeader"])
         s["xa"] = s["xg"] # xA equals the resulting xG value created for the assister
 
