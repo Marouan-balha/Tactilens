@@ -67,7 +67,7 @@ export function XgFlowChart({
               <Target className="h-5 w-5 text-emerald-400" /> Expected Goals (xG) & Threat Progression
             </CardTitle>
             <CardDescription className="text-xs">
-              Step-function cumulative threat curve and granular 10-shot classified occurrence table.
+              Step-function cumulative threat curve and granular {resolvedShots.length}-shot classified occurrence table.
             </CardDescription>
           </div>
 
@@ -103,7 +103,7 @@ export function XgFlowChart({
             <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
             <span className="font-bold text-foreground">{stats.team0Name}</span>
             <span className="text-muted-foreground">|</span>
-            <span className="font-bold text-blue-400">{stats.team0Goals} Goals</span>
+            <span className="font-bold text-blue-400">{stats.team0Goals} {stats.team0Goals === 1 ? 'Goal' : 'Goals'}</span>
             <span className="text-[11px] text-muted-foreground">({stats.team0Xg} xG)</span>
           </div>
 
@@ -111,12 +111,17 @@ export function XgFlowChart({
             <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
             <span className="font-bold text-foreground">{stats.team1Name}</span>
             <span className="text-muted-foreground">|</span>
-            <span className="font-bold text-red-400">{stats.team1Goals} Goal</span>
+            <span className="font-bold text-red-400">{stats.team1Goals} {stats.team1Goals === 1 ? 'Goal' : 'Goals'}</span>
             <span className="text-[11px] text-muted-foreground">({stats.team1Xg} xG)</span>
           </div>
 
           <div className="ml-auto text-xs text-muted-foreground hidden md:block">
-            xG Delta: <span className="font-bold text-emerald-400">+{(stats.team0Xg - stats.team1Xg).toFixed(2)} Chelsea</span>
+            xG Delta:{' '}
+            <span className="font-bold text-emerald-400">
+              {stats.team0Xg >= stats.team1Xg
+                ? `+${(stats.team0Xg - stats.team1Xg).toFixed(2)} ${stats.team0Name}`
+                : `+${(stats.team1Xg - stats.team0Xg).toFixed(2)} ${stats.team1Name}`}
+            </span>
           </div>
         </div>
       </CardHeader>
@@ -127,7 +132,7 @@ export function XgFlowChart({
           <div className="relative w-full rounded-lg border border-border/50 overflow-hidden bg-[#0e1726] p-2">
             <img
               src={chartImage}
-              alt="90-Minute Cumulative Expected Goals Flow Chart"
+              alt="Cumulative Expected Goals Flow Chart"
               className="w-full h-auto object-contain rounded-md shadow-lg"
             />
           </div>
@@ -150,13 +155,13 @@ export function XgFlowChart({
                   onClick={() => setFilterTeam('0')}
                   className={`px-2 py-0.5 rounded text-[11px] ${filterTeam === '0' ? 'bg-blue-600 text-white font-bold' : 'text-muted-foreground'}`}
                 >
-                  Chelsea
+                  {stats.team0Name}
                 </button>
                 <button
                   onClick={() => setFilterTeam('1')}
                   className={`px-2 py-0.5 rounded text-[11px] ${filterTeam === '1' ? 'bg-red-600 text-white font-bold' : 'text-muted-foreground'}`}
                 >
-                  Arsenal
+                  {stats.team1Name}
                 </button>
               </div>
             </div>
@@ -220,7 +225,7 @@ export function XgFlowChart({
                           <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
                             shot.team === 0 ? 'bg-blue-500/20 text-blue-400' : 'bg-red-500/20 text-red-400'
                           }`}>
-                            {shot.team === 0 ? 'Chelsea' : 'Arsenal'}
+                            {shot.team === 0 ? stats.team0Name : stats.team1Name}
                           </span>
                         </td>
                         <td className="p-3 font-semibold text-foreground">
@@ -293,7 +298,7 @@ export function XgFlowChart({
           <div className="p-3 rounded-lg border border-border/50 bg-background/50 space-y-1">
             <div className="flex items-center gap-1.5 font-semibold text-blue-400">
               <Target className="h-4 w-4" />
-              <span>Chelsea Conversion Delta</span>
+              <span>{stats.team0Name} Conversion Delta</span>
             </div>
             <p className="text-base font-bold text-foreground">
               {stats.team0Diff > 0 ? `+${stats.team0Diff}` : stats.team0Diff} Delta
@@ -306,7 +311,7 @@ export function XgFlowChart({
           <div className="p-3 rounded-lg border border-border/50 bg-background/50 space-y-1">
             <div className="flex items-center gap-1.5 font-semibold text-red-400">
               <ShieldAlert className="h-4 w-4 text-amber-400" />
-              <span>Arsenal Conversion Delta</span>
+              <span>{stats.team1Name} Conversion Delta</span>
             </div>
             <p className="text-base font-bold text-foreground">
               {stats.team1Diff > 0 ? `+${stats.team1Diff}` : stats.team1Diff} Delta

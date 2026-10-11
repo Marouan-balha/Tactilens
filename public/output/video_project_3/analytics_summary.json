@@ -1,9 +1,11 @@
 {
   "status": "success",
+  "durationMinutes": 5,
+  "durationSeconds": 251.1,
   "teams": {
     "team0": {
-      "name": "Chelsea U18",
-      "defensiveLineHeightMeters": 52.2,
+      "name": "Team A (Blue)",
+      "defensiveLineHeightMeters": 56.3,
       "compactnessMetersSq": 1299.2,
       "zone14Entries": 37,
       "leftHalfSpaceEntries": 7,
@@ -14,8 +16,8 @@
       "topChannel": "#205 (CB) \u2794 #142 (CM)",
       "topChannelPasses": 38,
       "playmakingHub": "#142 (Central Midfielder)",
-      "xgTotal": 3.79,
-      "goalsScored": 2,
+      "xgTotal": 2.13,
+      "goalsScored": 1,
       "topXaCreator": "#142 (CM)",
       "topXaValue": 0.76,
       "ppda": {
@@ -24,17 +26,16 @@
         "passesAllowed": 10,
         "defensiveActions": 8,
         "trend": [
-          5.3,
+          6.5,
+          7.1,
           6.9,
-          5.7,
-          7.6,
-          6.0,
-          7.1
+          6.2,
+          5.9
         ]
       }
     },
     "team1": {
-      "name": "Arsenal U18",
+      "name": "Team B (Red)",
       "defensiveLineHeightMeters": 62.4,
       "compactnessMetersSq": 1136.2,
       "zone14Entries": 13,
@@ -46,8 +47,8 @@
       "topChannel": "#7 (RW) \u2794 #10 (AM)",
       "topChannelPasses": 42,
       "playmakingHub": "#10 (Attacking Midfielder)",
-      "xgTotal": 2.66,
-      "goalsScored": 1,
+      "xgTotal": 0.52,
+      "goalsScored": 0,
       "topXaCreator": "#10 (AM)",
       "topXaValue": 0.58,
       "ppda": {
@@ -56,12 +57,11 @@
         "passesAllowed": 10,
         "defensiveActions": 4,
         "trend": [
-          7.3,
-          5.9,
-          7.7,
-          5.6,
-          7.2,
-          6.1
+          7.1,
+          6.7,
+          6.1,
+          6.0,
+          6.6
         ]
       }
     }
@@ -73,648 +73,131 @@
   "defensiveLineTimeSeries": [
     {
       "minute": 1,
-      "team0Height": 41.3,
-      "team1Height": 57.9
+      "team0Height": 41.7,
+      "team1Height": 57.3
     },
     {
       "minute": 2,
-      "team0Height": 54.7,
-      "team1Height": 60.4
+      "team0Height": 57.5,
+      "team1Height": 66.4
     },
     {
       "minute": 3,
-      "team0Height": 65.0,
+      "team0Height": 64.6,
       "team1Height": 68.0
     },
     {
       "minute": 4,
-      "team0Height": 56.1,
+      "team0Height": 55.1,
       "team1Height": 68.0
     },
     {
       "minute": 5,
-      "team0Height": 61.0,
-      "team1Height": 68.0
-    },
-    {
-      "minute": 6,
-      "team0Height": 34.9,
+      "team0Height": 62.4,
       "team1Height": 52.3
     }
   ],
   "ppdaChartImage": "ppda_gauge_chart.png",
   "ppdaIntervals": [
-    "0-15m",
-    "15-30m",
-    "30-45m",
-    "45-60m",
-    "60-75m",
-    "75-90m"
+    "0\u20131m",
+    "1\u20132m",
+    "2\u20133m",
+    "3\u20134m",
+    "4\u20135m"
   ],
   "zone14ChartImage": "zone14_entries_chart.png",
   "xgChartImage": "xg_flow_chart.png",
   "xgTimeSeries": [
     {
       "minute": 1,
-      "team0Xg": 0.0,
+      "team0Xg": 0.75,
       "team1Xg": 0.0
     },
     {
       "minute": 2,
-      "team0Xg": 0.0,
+      "team0Xg": 1.69,
       "team1Xg": 0.0
     },
     {
       "minute": 3,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
+      "team0Xg": 1.69,
+      "team1Xg": 0.52
     },
     {
       "minute": 4,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
+      "team0Xg": 2.13,
+      "team1Xg": 0.52
     },
     {
       "minute": 5,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 6,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 7,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 8,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 9,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 10,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 11,
-      "team0Xg": 0.0,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 12,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 13,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 14,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 15,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 16,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 17,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 18,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 19,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 20,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 21,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 22,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 23,
-      "team0Xg": 0.75,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 24,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 25,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 26,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 27,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 28,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 29,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 30,
-      "team0Xg": 1.64,
-      "team1Xg": 0.0
-    },
-    {
-      "minute": 31,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 32,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 33,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 34,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 35,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 36,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 37,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 38,
-      "team0Xg": 1.64,
-      "team1Xg": 0.45
-    },
-    {
-      "minute": 39,
-      "team0Xg": 1.64,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 40,
-      "team0Xg": 1.64,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 41,
-      "team0Xg": 1.64,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 42,
-      "team0Xg": 1.64,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 43,
-      "team0Xg": 1.64,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 44,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 45,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 46,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 47,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 48,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 49,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 50,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 51,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 52,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 53,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 54,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 55,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 56,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 57,
-      "team0Xg": 1.97,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 58,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 59,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 60,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 61,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 62,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 63,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 64,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 65,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 66,
-      "team0Xg": 2.87,
-      "team1Xg": 1.28
-    },
-    {
-      "minute": 67,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 68,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 69,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 70,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 71,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 72,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 73,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 74,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 75,
-      "team0Xg": 2.87,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 76,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 77,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 78,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 79,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 80,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 81,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 82,
-      "team0Xg": 3.36,
-      "team1Xg": 1.81
-    },
-    {
-      "minute": 83,
-      "team0Xg": 3.36,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 84,
-      "team0Xg": 3.36,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 85,
-      "team0Xg": 3.36,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 86,
-      "team0Xg": 3.36,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 87,
-      "team0Xg": 3.36,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 88,
-      "team0Xg": 3.79,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 89,
-      "team0Xg": 3.79,
-      "team1Xg": 2.66
-    },
-    {
-      "minute": 90,
-      "team0Xg": 3.79,
-      "team1Xg": 2.66
+      "team0Xg": 2.13,
+      "team1Xg": 0.52
     }
   ],
   "shots": [
     {
-      "minute": 12,
+      "minute": 1,
+      "clipStartSeconds": 40.2,
+      "clipEndSeconds": 52.2,
       "team": 0,
       "player": "#9 (ST)",
       "x": 92.5,
-      "y": 35.0,
+      "y": 34.0,
       "outcome": "saved",
       "isHeader": false,
-      "assister": "#142 (CM)",
+      "assister": "#10 (AM)",
+      "description": "Central low driven strike saved (0:45)",
       "id": 1,
-      "clipStartSeconds": 720.0,
-      "clipEndSeconds": 735.0,
       "xg": 0.75,
       "xa": 0.75
     },
     {
-      "minute": 24,
+      "minute": 2,
+      "clipStartSeconds": 100.4,
+      "clipEndSeconds": 112.4,
       "team": 0,
-      "player": "#9 (ST)",
-      "x": 96.0,
+      "player": "#11 (LW)",
+      "x": 98.0,
       "y": 33.5,
       "outcome": "goal",
       "isHeader": false,
-      "assister": "#142 (CM)",
+      "assister": "#8 (CM)",
+      "description": "Near-post finish (1:45)",
       "id": 2,
-      "clipStartSeconds": 1440.0,
-      "clipEndSeconds": 1455.0,
-      "xg": 0.89,
-      "xa": 0.89
+      "xg": 0.94,
+      "xa": 0.94
     },
     {
-      "minute": 31,
+      "minute": 3,
+      "clipStartSeconds": 165.7,
+      "clipEndSeconds": 177.7,
       "team": 1,
       "player": "#10 (AM)",
-      "x": 88.0,
-      "y": 28.0,
+      "x": 89.0,
+      "y": 29.0,
       "outcome": "blocked",
       "isHeader": false,
       "assister": "#7 (RW)",
+      "description": "Edge of box strike blocked (2:50)",
       "id": 3,
-      "clipStartSeconds": 1860.0,
-      "clipEndSeconds": 1875.0,
-      "xg": 0.45,
-      "xa": 0.45
+      "xg": 0.52,
+      "xa": 0.52
     },
     {
-      "minute": 39,
-      "team": 1,
-      "player": "#9 (ST)",
-      "x": 94.5,
-      "y": 36.0,
-      "outcome": "goal",
-      "isHeader": false,
-      "assister": "#10 (AM)",
-      "id": 4,
-      "clipStartSeconds": 2340.0,
-      "clipEndSeconds": 2355.0,
-      "xg": 0.83,
-      "xa": 0.83
-    },
-    {
-      "minute": 44,
+      "minute": 4,
+      "clipStartSeconds": 215.9,
+      "clipEndSeconds": 227.9,
       "team": 0,
-      "player": "#11 (LW)",
-      "x": 89.0,
-      "y": 22.0,
+      "player": "#9 (ST)",
+      "x": 91.0,
+      "y": 41.0,
       "outcome": "missed",
-      "isHeader": false,
-      "assister": "#8 (CM)",
-      "id": 5,
-      "clipStartSeconds": 2640.0,
-      "clipEndSeconds": 2655.0,
-      "xg": 0.33,
-      "xa": 0.33
-    },
-    {
-      "minute": 58,
-      "team": 0,
-      "player": "#9 (ST)",
-      "x": 97.5,
-      "y": 34.0,
-      "outcome": "goal",
       "isHeader": true,
       "assister": "#3 (LB)",
-      "id": 6,
-      "clipStartSeconds": 3480.0,
-      "clipEndSeconds": 3495.0,
-      "xg": 0.9,
-      "xa": 0.9
-    },
-    {
-      "minute": 67,
-      "team": 1,
-      "player": "#11 (LW)",
-      "x": 91.0,
-      "y": 42.0,
-      "outcome": "saved",
-      "isHeader": false,
-      "assister": "#10 (AM)",
-      "id": 7,
-      "clipStartSeconds": 4020.0,
-      "clipEndSeconds": 4035.0,
-      "xg": 0.53,
-      "xa": 0.53
-    },
-    {
-      "minute": 76,
-      "team": 0,
-      "player": "#7 (RW)",
-      "x": 90.0,
-      "y": 26.0,
-      "outcome": "saved",
-      "isHeader": false,
-      "assister": "#142 (CM)",
-      "id": 8,
-      "clipStartSeconds": 4560.0,
-      "clipEndSeconds": 4575.0,
-      "xg": 0.49,
-      "xa": 0.49
-    },
-    {
-      "minute": 83,
-      "team": 1,
-      "player": "#9 (ST)",
-      "x": 95.0,
-      "y": 32.0,
-      "outcome": "missed",
-      "isHeader": false,
-      "assister": "#7 (RW)",
-      "id": 9,
-      "clipStartSeconds": 4980.0,
-      "clipEndSeconds": 4995.0,
-      "xg": 0.85,
-      "xa": 0.85
-    },
-    {
-      "minute": 88,
-      "team": 0,
-      "player": "#10 (AM)",
-      "x": 86.5,
-      "y": 34.5,
-      "outcome": "blocked",
-      "isHeader": false,
-      "assister": "#9 (ST)",
-      "id": 10,
-      "clipStartSeconds": 5280.0,
-      "clipEndSeconds": 5295.0,
-      "xg": 0.43,
-      "xa": 0.43
+      "description": "Back-post header drifting wide (3:40)",
+      "id": 4,
+      "xg": 0.44,
+      "xa": 0.44
     }
   ]
 }

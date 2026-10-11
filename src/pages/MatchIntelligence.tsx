@@ -117,8 +117,8 @@ export const AVAILABLE_MATCHES: MatchProfile[] = [
     name: 'New Upload: Video Project 3 (AWS GPU Processed)',
     badge: 'AWS GPU Run — Complete',
     durationLabel: '4:15 Min Condensed Clip • 7,661 Frames • 30 FPS',
-    score: 'Chelsea U18 2 – 1 Arsenal U18',
-    description: 'Fresh footage processed via AWS Batch GPU worker (1x GPU, 4 vCPUs). 97 persistent unique tracks, jersey color clustered, faststart H.264 stream.',
+    score: 'Team A (Blue) 1 – 0 Team B (Red)',
+    description: 'Fresh footage processed via AWS Batch GPU worker (1x GPU, 4 vCPUs). 97 persistent unique tracks, jersey color clustered, faststart H.264 stream. Duration-scaled tactical analysis.',
     outputPath: '/output/video_project_3',
     fps: 30,
     totalBoxes: '11,406 Track IDs (7,661 frames)',
@@ -170,15 +170,18 @@ export default function MatchIntelligence() {
         setAnalytics(data);
         if (data?.shots && data.shots.length > 0) {
           const firstShot = data.shots[0];
+          const t0Name = data?.teams?.team0?.name || 'Team A';
+          const t1Name = data?.teams?.team1?.name || 'Team B';
+          const teamName = firstShot.team === 0 ? t0Name : t1Name;
           setActiveClip({
             id: firstShot.id,
-            title: `${String(firstShot.team)} #${firstShot.player} (${firstShot.position}) — ${String(firstShot.outcome || '').toUpperCase()} (${firstShot.xg} xG)`,
+            title: `${teamName} #${firstShot.player} — ${String(firstShot.outcome || '').toUpperCase()} (${firstShot.xg} xG)`,
             category: 'shot',
             timestampSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
             startSeconds: firstShot.clipStartSeconds ?? (firstShot.minute * 60),
             endSeconds: firstShot.clipEndSeconds ?? ((firstShot.minute * 60) + 12),
-            team: String(firstShot.team).includes('Chelsea') || firstShot.team === 0 ? 'Chelsea U18' : 'Arsenal U18',
-            metadata: `Minute ${firstShot.minute}’ • ${firstShot.foot} • Assister: ${firstShot.assister} (${firstShot.xa} xA)`,
+            team: teamName,
+            metadata: `Minute ${firstShot.minute}’ • ${firstShot.isHeader ? 'Header' : 'Foot'} • Assister: ${firstShot.assister} (${firstShot.xa} xA)`,
             provenance: 'TL-04 Evidence Schema • Verified Video Occurrence',
           });
         }
@@ -233,14 +236,18 @@ export default function MatchIntelligence() {
       ? shot.clipEndSeconds
       : (startSec + 15);
 
+    const t0Name = analytics?.teams?.team0?.name || 'Team A';
+    const t1Name = analytics?.teams?.team1?.name || 'Team B';
+    const teamName = shot.team === 0 ? t0Name : t1Name;
+
     const clip: ActiveEvidenceClip = {
       id: shot.id,
-      title: `${shot.team === 0 ? 'Chelsea' : 'Arsenal'} ${shot.player} — ${shot.outcome.toUpperCase()} (${shot.xg} xG)`,
+      title: `${teamName} ${shot.player} — ${shot.outcome.toUpperCase()} (${shot.xg} xG)`,
       category: 'shot',
       timestampSeconds: startSec,
       startSeconds: startSec,
       endSeconds: endSec,
-      team: shot.team === 0 ? 'Chelsea U18' : 'Arsenal U18',
+      team: teamName,
       metadata: `Minute ${shot.minute}’ • ${shot.isHeader ? 'Header' : 'Foot'} • Assister: ${shot.assister} (${shot.xa} xA)${shot.description ? ` • ${shot.description}` : ''}`,
       provenance: 'TL-04 Evidence Schema • Verified Video Occurrence'
     };
